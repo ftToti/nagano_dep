@@ -6,10 +6,10 @@ class DeviseCreateMembers < ActiveRecord::Migration[5.2]
       ## Database authenticatable
       t.string :email,              null: false, default: ""
       t.string :encrypted_password, null: false, default: ""
-
+      
       ## Recoverable
       t.string   :reset_password_token
-      t.datetime :reset_password_sent_at
+      t.datetime :reset_password_sent_at 
 
       ## Rememberable
       t.datetime :remember_created_at
@@ -32,7 +32,14 @@ class DeviseCreateMembers < ActiveRecord::Migration[5.2]
       # t.string   :unlock_token # Only if unlock strategy is :email or :both
       # t.datetime :locked_at
 
-
+      t.string :last_name,          null: false, index: true, default: ""
+      t.string :first_name,         null: false, index: true, default: ""
+      t.string :last_name_kana,     null: false, index: true, default: ""
+      t.string :first_name_kana,    null: false, index: true, default: ""
+      t.string :postcode,           null: false, default: ""
+      t.string :address,            null: false, unique: true, default: ""
+      t.string :phone_number,       null: false, default: ""
+      t.boolean :is_enabled,        null: false, default: true
       t.timestamps null: false
     end
 
