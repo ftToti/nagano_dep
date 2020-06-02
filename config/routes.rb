@@ -11,7 +11,8 @@ Rails.application.routes.draw do
   }
 
   namespace :admins do
-    get '/top', to: 'top#top', as: 'top'
+    get '/top', to: 'admins/top#top', as: 'top'
+    #root 'admins/top#top'
     resources :members, only: [:index, :show, :edit, :update]
     resources :orders, only: [:index, :show, :update]
     resources :order_products, only: [:update]
@@ -19,8 +20,9 @@ Rails.application.routes.draw do
     resources :product_genres, only: [:index, :create, :edit, :update]
   end
 
+
+  root to: 'members/top#top'
   namespace :members do
-    get '/top', to: 'top#top', as: 'top'
     get '/top/about', to: 'top#about', as: 'about'
     delete '/cart_items', to: 'cart_items#destroy_all', as: 'destroy_all'
     get '/disable_confirm', to: 'members#disable_confirm', as: 'disable_confirm'
