@@ -6,22 +6,30 @@ class Admins::ProductGenresController < ApplicationController
 
 	def create
 		@genre = ProductGenre.new(product_genre_params)
-		@genre.save
-		redirect_to admins_product_genres_path
+		if @genre.save!
+			redirect_to admins_product_genres_path
+		else
+			render "index"
+		end
+
 	end
 
 	def edit
+		@genre = ProductGenre.find(params[:id])
 	end
 
 	def update
 		@genre = ProductGenre.find(params[:id])
-		@genre.update(product_genre_params)
-		redirect_to admins_product_genres_path
+		if @genre.update(product_genre_params)
+			redirect_to admins_product_genres_path
+		else
+			render "edit"
+		end
 	end
 
 
 	private
 	def product_genre_params
-		params.permit(:category, :is_enabled)
+		params.require(:product_genre).permit(:category, :is_enabled)
 	end
 end

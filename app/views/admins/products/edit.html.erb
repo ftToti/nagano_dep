@@ -1,1 +1,20 @@
 <h1>Adimns_Products_Edit</h1>
+<%= link_to '商品一覧', admins_products_path %>
+<h2>商品編集</h2>
+
+<div>
+	<div style="width: 200px; height: 200px; background-color: #FF0000;"></div>
+	<%= form_with model: @product, url: admins_product_path do |form| %>
+		<%= form.label :商品名 %>
+		<%= form.text_field :name %>
+		<%= form.label :商品説明 %>
+		<%= form.text_area :description %>
+		<%= form.label :ジャンル %>
+		<%= form.collection_select :product_genre_id, ProductGenre.all, :id, :category, include_blank: "選択してください" %>
+		<%= form.label :税抜価格 %>
+		<%= form.text_field :unit_price %>円
+		<%= form.label :販売ステータス %>
+		<%= form.select :is_sales, [["販売中",true],["売切れ",false]], include_blank: "選択してください" %>
+		<%= form.submit %>
+	<% end %>
+</div>
