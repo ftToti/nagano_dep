@@ -1,23 +1,26 @@
 Rails.application.routes.draw do
   devise_for :admins, controllers: {
-  	sessions:      'admins/admins/sessions'
-  	passwords:     'admins/admins/passwords'
+  	sessions:      'admins/admins/sessions',
+  	passwords:     'admins/admins/passwords',
   	registrations: 'admins/admins/registrations'
   }
   devise_for :members, controllers: {
-  	sessions:      'members/members/sessions'
-  	passwords:     'members/members/passwords'
+  	sessions:      'members/members/sessions',
+  	passwords:     'members/members/passwords',
   	registrations: 'members/members/registrations'
   }
 
   namespace :admins do
-    get '/top', to: 'top#top', as: 'top'
+    get '/top', to: 'admins/top#top', as: 'top'
+    #root 'admins/top#top'
     resources :members, only: [:index, :show, :edit, :update]
     resources :orders, only: [:index, :show, :update]
     resources :order_products, only: [:update]
     resources :products, only: [:index, :show, :new, :create, :edit, :update]
     resources :product_genres, only: [:index, :create, :edit, :update]
   end
+
+  #root to: "admins/top#top"
 
   namespace :members do
     get '/top', to: 'top#top', as: 'top'
