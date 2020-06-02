@@ -1,0 +1,23 @@
+<div class="container">
+	<div class="row">
+    <div class=col-xs-9>
+
+      <h2><%= @member.last_name %><%= @member.first_name %>さんの会員詳細</h2><br >
+
+        <div>
+          <p>顧客ID</p><%= @member.id %>　有効会員（後で実装）
+          <p>氏名</p><%= @member.last_name %>　<%= @member.first_name %>
+          <p>フリガナ</p><%= @member.last_name_kana %>　<%= @member.first_name_kana %>
+          <p>郵便番号</p><%= @member.postcode %>
+          <p>住所</p><%= @member.address %>
+          <p>電話番号</p><%= @member.phone_number %>
+          <p>メールアドレス</p><%= @member.email %>
+        </div>
+
+        <div>
+          <%= link_to '編集する',edit_admins_member_path(@member.id), class: "col-xs-2 btn btn-default edit_member_#{@member.id}" %>
+          [ぼたん]注文履歴一覧を見る（後で実装）
+        </div>
+    </div>
+  </div>
+</div>
