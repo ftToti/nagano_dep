@@ -1,0 +1,25 @@
+<h1>Members_Products_Show</h1>
+<%= link_to '商品一覧', members_products_path %>
+<div class="container">
+	<div class="row">
+		<div class="col-xs-3">
+			<label>
+				ジャンル検索
+			</label>
+		</div>
+		<div class="col-xs-9">
+			<div>
+				<%= attachment_image_tag @product, :image, fallback: 'no_image.jpg', size: '200x160' %>
+				<%= @product.name %>
+				<%= @product.description %>
+				¥<%= (@product.unit_price * @tax).round %>税込
+			</div>
+			<div>
+				<%= form_with model: @cart_item do |form| %>
+					<%= form.select :number, [["1", 1 ],["2", 2 ],["3", 3 ]] %>
+					<%= form.submit %>
+				<% end %>
+			</div>
+		</div>
+	</div>
+</div>

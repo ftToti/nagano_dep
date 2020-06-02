@@ -2,8 +2,18 @@
 <%= link_to '商品新規登録', new_admins_product_path %>
 <%= link_to '商品一覧', admins_products_path %>
 <h2>商品詳細</h2>
-<%= attachment_image_tag @product, :image, fallback: "no_image.jpg", size: "200x160" %>
-<span>商品 <%= @product.name %></span>
-<span>商品説明 <%= @product.description %></span>
-<span>ジャンル <%= @product.product_genre.category %></span>
-<span>税込価格(税抜価格) <%= @product.unit_price %></span>
+<div>
+	<%= attachment_image_tag @product, :image, fallback: "no_image.jpg", size: "200x160" %>
+</div>
+<div>
+	<span>商品 <%= @product.name %></span><br>
+	<span>商品説明 <%= @product.description %></span><br>
+	<span>ジャンル <%= @product.product_genre.category %></span><br>
+	<span>税込価格(税抜価格) <%= (@product.unit_price * @tax).round %>(<%= @product.unit_price %>)</span><br>
+	<% if @product.is_sales == true %>
+		<span>販売ステータス 販売中</span>
+	<% elsif @product.is_sales == false %>
+		<span>販売ステータス 販売停止中</span>
+	<% end %>
+	<%= link_to '編集する', edit_admins_product_path(@product) %>
+</div>
