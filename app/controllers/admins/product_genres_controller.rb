@@ -5,19 +5,23 @@ class Admins::ProductGenresController < ApplicationController
 	end
 
 	def create
-		@genre = ProductGenre.new(book_params)
+		@genre = ProductGenre.new(product_genre_params)
 		@genre.save
-		redirect_back(fallback_location: root_path)
+		redirect_to admins_product_genres_path
 	end
 
 	def edit
 	end
 
 	def update
+		@genre = ProductGenre.find(params[:id])
+		@genre.update(product_genre_params)
+		redirect_to admins_product_genres_path
 	end
 
+
 	private
-	def book_params
-		params.require(:product_genre).permit(:category, :is_enable)
+	def product_genre_params
+		params.permit(:category, :is_enabled)
 	end
 end
