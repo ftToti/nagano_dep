@@ -1,0 +1,6 @@
+<% @members.each do |member| %>
+<P><%= member.last_name %></P>
+<P><%= member.first_name %></P>
+<% end %>
+
+<%= link_to "ログアウト", destroy_member_session_path, method: :delete %>
