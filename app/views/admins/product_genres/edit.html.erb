@@ -1,0 +1,17 @@
+<h1>Admins_ProductGenres_Index</h1>
+
+<h2>ジャンル編集</h2>
+
+<div>
+	<%= form_with(model: @product_genre, url: admins_product_genre_path, method: :patch, local:true) do |form| %>
+		<div class="field">
+			<%= form.label :ジャンル %>
+			<%= form.text_field :category %>
+			<%= form.radio_button :is_enabled, :true, checked: true %>
+			<%= form.label :有効 %>
+			<%= form.radio_button :is_enabled, :false %>
+			<%= form.label :無効 %>
+			<%= form.submit method: :patch %>
+		</div>
+	<% end %>
+</div>

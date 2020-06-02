@@ -1,0 +1,9 @@
+<h1>Adimns_Products_Show</h1>
+<%= link_to '商品新規登録', new_admins_product_path %>
+<%= link_to '商品一覧', admins_products_path %>
+<h2>商品詳細</h2>
+<%= attachment_image_tag @product, :image, fallback: "no_image.jpg", size: "200x160" %>
+<span>商品 <%= @product.name %></span>
+<span>商品説明 <%= @product.description %></span>
+<span>ジャンル <%= @product.product_genre.category %></span>
+<span>税込価格(税抜価格) <%= @product.unit_price %></span>

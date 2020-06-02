@@ -1,12 +1,12 @@
 Rails.application.routes.draw do
   devise_for :admins, controllers: {
-  	sessions:      'admins/admins/sessions'
-  	passwords:     'admins/admins/passwords'
+  	sessions:      'admins/admins/sessions',
+  	passwords:     'admins/admins/passwords',
   	registrations: 'admins/admins/registrations'
   }
   devise_for :members, controllers: {
-  	sessions:      'members/members/sessions'
-  	passwords:     'members/members/passwords'
+  	sessions:      'members/members/sessions',
+  	passwords:     'members/members/passwords',
   	registrations: 'members/members/registrations'
   }
 
@@ -33,5 +33,6 @@ Rails.application.routes.draw do
     resources :products, only: [:index, :show]
     resources :shipping_addresses, only: [:index, :create, :edit, :update, :destroy]
   end
+
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
