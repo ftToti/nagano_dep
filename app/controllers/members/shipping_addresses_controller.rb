@@ -5,8 +5,23 @@ class Members::ShippingAddressesController < ApplicationController
 	end
 	def create
 		@shipping_address = ShippingAddress.new(shipping_address_params)
+		@shipping_address.member_id = current_member.id
 		@shipping_address.save
-		redirect_to shipping_address_path
+		redirect_to members_shipping_addresses_path
+	end
+	def edit
+		@shipping_address = ShippingAddress.find(params[:id])
+	end
+	def update
+		@shipping_address = ShippingAddress.find(params[:id])
+		@shipping_address.update(shipping_address_params)
+		redirect_to members_shipping_addresses_path
+	end
+
+	def destroy
+		@shipping_address = ShippingAddress.find(params[:id])
+		@shipping_address.destroy
+		redirect_to members_shipping_addresses_path
 	end
 
 	private
