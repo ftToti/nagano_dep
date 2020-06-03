@@ -5,7 +5,14 @@
       <h2><%= @member.last_name %><%= @member.first_name %>さんの会員詳細</h2><br >
 
         <div>
-          <p>顧客ID</p><%= @member.id %>　有効会員（後で実装）
+          <p>顧客ID</p><%= @member.id %><br>
+          <% if @member.is_enabled == true %>
+            <td>有効会員</td>
+          <% elsif @member.is_enabled == false %>
+            <td>退会済み</td>
+          <% else %>
+            <td></td>
+          <% end %>
           <p>氏名</p><%= @member.last_name %>　<%= @member.first_name %>
           <p>フリガナ</p><%= @member.last_name_kana %>　<%= @member.first_name_kana %>
           <p>郵便番号</p><%= @member.postcode %>
