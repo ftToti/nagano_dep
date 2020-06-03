@@ -1,0 +1,27 @@
+<div class="container">
+  <div class="row">
+    <div class="col-3">
+    <h2>注文情報入力</h2>
+
+        <div class="field">
+          <%= f.label :支払方法 %>
+          <%= f.radio_button :payment_method, :true, checked: true %>
+          <%= f.label :クレジットカード %>
+          <%= f.radio_button :payment_method, :false %>
+          <%= f.label :銀行振込 %>
+        </div>
+
+        <div class="field">
+          <%= f.label :お届け先 %>
+          <%= f.radio_button :member_address, :true, checked: true %>
+          <%= f.label :ご自身の住所 %>
+          <%= f.radio_button :is_enabled, :false %>
+          <%= f.label :登録済住所から選択 %>
+          
+          <%= f.radio_button :is_enabled, :false %>
+          <%= f.label :新しいお届け先 %>
+        </div>
+
+    </div>
+  </div>
+</div>
