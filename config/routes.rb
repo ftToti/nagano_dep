@@ -29,6 +29,7 @@ Rails.application.routes.draw do
     patch '/disable/:id', to: 'members#disable', as: 'disable'
     get '/orders/confirm', to: 'orders#confirm', as: 'confirm'
     get '/orders/thanks', to: 'orders#thanks', as: 'thanks'
+    get '/products/genre/:id', to: 'products#genre_index', as: 'products_genre'
     resources :members, only: [:show, :edit, :update]
     resources :cart_items, only: [:show, :create, :update, :destroy]
     resources :orders, only: [:index, :show, :new, :create, :update]

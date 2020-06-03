@@ -5,6 +5,7 @@
 <div>
 	<div style="width: 200px; height: 200px; background-color: #FF0000;"></div>
 	<%= form_with model: @product, url: admins_product_path do |form| %>
+		<%= form.attachment_field :image %>
 		<%= form.label :商品名 %>
 		<%= form.text_field :name %>
 		<%= form.label :商品説明 %>
