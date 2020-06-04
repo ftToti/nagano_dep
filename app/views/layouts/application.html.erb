@@ -20,6 +20,30 @@
                     </li>
                   </ul>
 
+<<<<<<< HEAD
+=======
+                <nav>
+                <ul class="nav navbar-nav navbar-right">
+                <% if member_signed_in? %>
+                  <li>ようこそ、</li>
+                  <li>マイページ</li>
+                  <li>商品一覧</li>
+                  <li>カート</li>
+                  <li>ログイン</li>
+                <% elsif admin_signed_in? %>
+                  <li><%= link_to '商品一覧', admins_products_path %></li>
+                  <li><%= link_to '会員一覧', admins_members_path %></li>
+                  <li>注文履歴一覧</li>
+                  <li><%= link_to 'ジャンル一覧', admins_product_genres_path %></li>
+                  <li><%= link_to 'ログアウト', destroy_admin_session_path, method: :delete %></li>
+                <% else %>
+                  <li>商品一覧</li>
+                  <li>新規登録</li>
+                  <li><%= link_to 'ログイン', new_member_session_path %></li>
+                <% end %>
+                </ul>
+                </nav>
+>>>>>>> 949150934823a8d6a820e4765bbee21c6d855b70
 
                   <ul class="nav navbar-nav navbar-right">
                     <% if member_signed_in? %>

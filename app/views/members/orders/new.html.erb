@@ -1,0 +1,61 @@
+<div class="container">
+  <div class="row">
+    <div class="col-3">
+    <h2>注文情報入力</h2>
+      <%= form_with model: @order, url: members_orders_path do |f| %>
+        <div class="field">
+          <h3><%= f.label :支払方法 %></h3>
+          <%= f.radio_button :payment_method, :true, checked: true %>
+          <%= f.label :クレジットカード %><br>
+          <%= f.radio_button :payment_method, :false %>
+          <%= f.label :銀行振込 %>
+        </div>
+
+        <div class="field">
+          <h3><%= f.label :お届け先 %></h3>
+          <%= f.radio_button :address, current_member.address, checked: true %>
+          <%= f.label :ご自身の住所 %><br>
+          <%= f.radio_button :address, :false %>
+          <%= f.label :登録済住所から選択 %>
+            <%= f.collection_select :address, current_member.shipping_addresses, :address, :address, include_blank: "選択してください" %>
+            <%= f.hidden_field :member_id, value: current_member.shipping_addresses %>
+
+        <div class="field">
+          <%= f.radio_button :address, :false %>
+          <%= f.label :新しいお届け先 %>
+
+          <div class="row">
+            <div class="col-xs-3">
+              <p>郵便番号(ハイフンなし)</p>
+            </div>
+            <div class="col-xs-3 form-inline">
+              <div class="col-xs-2"><%= f.text_field :postcode, autofocus: true, autocomplete: "postcode", :class => "form-control" %></div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-xs-3">
+              <p>住所</p>
+            </div>
+            <div class="col-xs-9 form-inline">
+              <div class="col-xs-9"><%= f.text_field :address, autofocus: true, autocomplete: "address", :class => "form-control" %></div>
+            </div>
+          </div>
+
+
+          <div class="row">
+            <div class="col-xs-3">
+              <p>宛名</p>
+            </div>
+            <div class="col-xs-9 form-inline">
+              <div class="col-xs-9"><%= f.text_field :addressee, autofocus: true, autocomplete: "addressee", :class => "form-control" %></div>
+            </div>
+          </div>
+        </div>
+        </div>
+
+        <%= f.submit :確認画面へ進む %>
+      <% end %>
+    </div>
+  </div>
+</div>
