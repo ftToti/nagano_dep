@@ -7,4 +7,8 @@ class Members::ProductsController < ApplicationController
 		@product = Product.find(params[:id])
 		@tax = 1.1
 	end
+
+	def genre_index
+		@genre = ProductGenre.find(params[:id])
+	end
 end
