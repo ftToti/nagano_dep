@@ -19,19 +19,21 @@
 		</thead>
 		<tbody>
 			<% @products.each do |product| %>
-				<tr>
-					<td><%= product.id %></td>
-					<td><%= link_to product.name, admins_product_path(product) %></td>
-					<td><%= product.unit_price %></td>
-					<td><%= product.product_genre.category %></td>
-					<% if product.is_sales == true %>
-						<td>販売中</td>
-					<% elsif product.is_sales == false %>
-						<td>販売停止中</td>
-					<% else %>
-						<td></td>
-					<% end %>
-				</tr>
+				<% if product.product_genre.is_enabled == true %>
+					<tr>
+						<td><%= product.id %></td>
+						<td><%= link_to product.name, admins_product_path(product) %></td>
+						<td><%= product.unit_price %></td>
+						<td><%= product.product_genre.category %></td>
+						<% if product.is_sales == true %>
+							<td>販売中</td>
+						<% elsif product.is_sales == false %>
+							<td>販売停止中</td>
+						<% else %>
+							<td></td>
+						<% end %>
+					</tr>
+				<% end %>
 			<% end %>
 		</tbody>
 	</table>
