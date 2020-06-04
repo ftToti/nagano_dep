@@ -1,11 +1,11 @@
 <div class="container">
 	<div class="row">
-		<div class="col-3">マイページ</div>
-	</div>
+      <div class="col-2 offset-1 align-items-center table-active text-center h4">マイページ</div>
+    </div>
 	<div class="row">
-		<div class="col-1">登録情報</div>
-		<div class="col-1">編集する</div>
-		<div class="col-2">パスワードを変更する</div>
+		<div class="col-1 font-weight-bold h5">登録情報</div>
+		<div class="col-2"><%= link_to "編集する", edit_members_member_path, class: "btn btn-primary btn-block" %></div>
+		<div class="col-2"><%= link_to "パスワードを変更する", edit_member_password_path(current_member) %></div>
 	</div>
 
 	<div class="row">
