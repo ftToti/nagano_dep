@@ -19,23 +19,22 @@
 				<% end %>
 			</table>
 		</div>
-		<div class="col-xs-9">
-			<div class="row">
-				<div class="float-left">
-					<%= attachment_image_tag @product, :image, fallback: 'no_image.jpg', size: '400x320' %>
-				</div>
-				<div style="font-size: 24px;"><%= @product.name %></div>
-				<div><%= @product.description %></div>
-				¥<%= (@product.unit_price * @tax).round %>税込
-			</div>
-			<div>
-				<%= form_with model: @cart_item, url: members_cart_items_path do |form| %>
-					<%= form.select :number, [["1", 1 ],["2", 2 ],["3", 3 ]] %>
-					<%= form.hidden_field :member_id, value: current_member.id %>
-					<%= form.hidden_field :product_id, value: @product.id %>
-					<%= form.submit %>
-				<% end %>
-			</div>
+		<div class="col-4">
+			<%= attachment_image_tag @product, :image, fallback: 'no_image.jpg', size: '400x320' %>
+		</div>
+		<div class="col-1"></div>
+		<div class="col-4">
+			<div style="font-size: 24px;"><%= @product.name %></div><br>
+			<div style="word-break: normal;"><%= @product.description %></div><br>
+			¥<%= (@product.unit_price * @tax).round %>税込
+		</div>
+		<div>
+			<%= form_with model: @cart_item, url: members_cart_items_path, local: true do |form| %>
+				<%= form.select :number, [["1", 1 ],["2", 2 ],["3", 3 ]],{}, {class: "custom-select", style: "width: 138px;"} %>
+				<%= form.hidden_field :member_id, value: current_member.id %>
+				<%= form.hidden_field :product_id, value: @product.id %>
+				<%= form.submit "カートに入れる", class: "btn btn-primary" %>
+			<% end %>
 		</div>
 	</div>
 </div>
