@@ -1,104 +1,91 @@
 <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
   <%= render "devise/shared/error_messages", resource: resource %>
-
   <div class="container">
 
     <div class="row">
-      <div class="col-xs-offset-2">
-        <h4>新規会員登録</h4>
-      </div>
+      <div class="col-2 offset-2 align-items-center table-active text-center h4">新規会員登録</div>
     </div>
 
     <div class="row">
-      <div class="col-xs-3">
-        <p>名前</p>
-      </div>
-      <div class="col-xs-3 form-inline">
-        (姓)<div class="col-xs-2"><%= f.text_field :last_name, autofocus: true, autocomplete: "last_name", :class => "form-control" %></div>
-      </div>
-      <div class="col-xs-3 form-inline">
-        (名)<div class="col-xs-2"><%= f.text_field :first_name, autofocus: true, autocomplete: "first_name", :class => "form-control" %></div>
-      </div>
-    </div>
+      <div class="col-9">
 
-    <div class="row">
-      <div class="col-xs-3">
-        <p>フリガナ</p>
-      </div>
-      <div class="col-xs-3 form-inline">
-        (セイ)<div class="col-xs-2"><%= f.text_field :last_name_kana, autofocus: true, autocomplete: "last_name_kana", :class => "form-control" %></div>
-      </div>
-      <div class="col-xs-3 form-inline">
-        (メイ)<div class="col-xs-2"><%= f.text_field :first_name_kana, autofocus: true, autocomplete: "first_name_kana", :class => "form-control" %></div>
-      </div>
-    </div>
+      <table class="table table-borderless">
+        <tr>
+          <td class="align-middle">名前</td>
+          <td class="align-middle">(姓)</td>
+          <td><%= f.text_field :last_name, autofocus: true, autocomplete: "last_name", :class => "form-control" %></td>
+          <td class="align-middle">(名)</td>
+          <td><%= f.text_field :first_name, autofocus: true, autocomplete: "first_name", :class => "form-control" %></td>
+        </tr>
 
-    <div class="row">
-      <div class="col-xs-3">
-        <p>メールアドレス</p>
-      </div>
-      <div class="col-xs-3 form-inline">
-        <div class="col-xs-2"><%= f.email_field :email, autofocus: true, autocomplete: "email", :class => "form-control" %></div>
-      </div>
-    </div>
+        <tr>
+          <td class="align-middle">名前</td>
+          <td class="align-middle">(セイ)</td>
+          <td><%= f.text_field :last_name_kana, autofocus: true, autocomplete: "last_name_kana", :class => "form-control" %></td>
+          <td class="align-middle">(メイ)</td>
+          <td><%= f.text_field :first_name_kana, autofocus: true, autocomplete: "first_name_kana", :class => "form-control" %></td>
+        </tr>
 
-    <div class="row">
-      <div class="col-xs-3">
-        <p>郵便番号(ハイフンなし)</p>
-      </div>
-      <div class="col-xs-3 form-inline">
-        <div class="col-xs-2"><%= f.text_field :postcode, autofocus: true, autocomplete: "postcode", :class => "form-control" %></div>
-      </div>
-    </div>
+        <tr>
+          <td class="align-middle">メールアドレス</td>
+          <td></td>
+          <td><%= f.email_field :email, autofocus: true, autocomplete: "email", :class => "form-control" %></td>
+        </tr>
 
-    <div class="row">
-      <div class="col-xs-3">
-        <p>住所</p>
-      </div>
-      <div class="col-xs-9 form-inline">
-        <div class="col-xs-9"><%= f.text_field :address, autofocus: true, autocomplete: "address", :class => "form-control" %></div>
-      </div>
-    </div>
+        <tr>
+          <td class="align-middle">郵便番号(ハイフンなし)</td>
+          <td></td>
+          <td><%= f.text_field :postcode, autofocus: true, autocomplete: "postcode", :class => "form-control" %></td>
+        </tr>
 
-    <div class="row">
-      <div class="col-xs-3">
-        <p>電話番号(ハイフンなし)</p>
-      </div>
-      <div class="col-xs-3 form-inline">
-        <div class="col-xs-2"><%= f.text_field :phone_number, autofocus: true, autocomplete: "phone_number", :class => "form-control" %></div>
-      </div>
-    </div>
+        <tr>
+          <td class="align-middle">住所</td>
+          <td></td>
+          <td colspan="3"><%= f.text_field :address, autofocus: true, autocomplete: "address", :class => "form-control" %></td>
+        </tr>
 
-    <div class="row">
-      <div class="col-xs-3">
-        <p>パスワード(6文字以上)</p>
-      </div>
-      <div class="col-xs-3 form-inline">
-        <div class="col-xs-2"><%= f.password_field :password, autocomplete: "new-password", :class => "form-control" %></div>
-      </div>
-    </div>
+        <tr>
+          <td class="align-middle">電話番号(ハイフンなし)</td>
+          <td></td>
+          <td><%= f.text_field :phone_number, autofocus: true, autocomplete: "phone_number", :class => "form-control" %></td>
+        </tr>
 
-    <div class="row">
-      <div class="col-xs-3">
-        <p>パスワード(確認用)</p>
-      </div>
-      <div class="col-xs-3 form-inline">
-        <div class="col-xs-2"><%= f.password_field :password_confirmation, autocomplete: "new-password", :class => "form-control" %></div>
+        <tr>
+          <td class="align-middle">パスワード(6文字以上)</td>
+          <td></td>
+          <td><%= f.password_field :password, autocomplete: "new-password", :class => "form-control" %></td>
+        </tr>
+
+        <tr>
+          <td class="align-middle">パスワード(確認用)</td>
+          <td></td>
+          <td><%= f.password_field :password_confirmation, autocomplete: "new-password", :class => "form-control" %></td>
+        </tr>
+
+      </table>
       </div>
     </div>
       
     <div class="row">
-      <div class="col-xs-4">
-      </div>
-      <div class="col-xs-3">
+      <div class="col-3 offset-4">
         <%= f.submit "新規登録", class: "btn btn-success btn-block" %>
       </div>
     </div>
-      
+
+    <div class="row">
+      <div class="col-3 offset-1 align-items-center table-active text-center h4">既に登録済みの方</div>
+    </div>
+
+    <div class="row">
+      <div class="offset-2">
+       　<%= link_to "こちら", new_session_path(resource_name) %>　からログインしてください。
+      </div>
+    </div>
+
+  </div>      
 <% end %>
 
-<h4>既に登録済みの方</h4>
 
-<%= render "members/members/shared/links" %>からログインしてください。
-</div>
+
+
 

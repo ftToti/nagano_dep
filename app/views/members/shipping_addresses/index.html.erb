@@ -1,72 +1,72 @@
 <div class="container">
 
-<div class="row">
-	<div class="col-sm-3 col-xs-offset-1">
-		<h2 class="text-center table-active">配送先登録/一覧</h2>
+	<div class="row">
+		<div class="col-sm-3 col-xs-offset-1">
+			<h2 class="text-center table-active">配送先登録/一覧</h2>
+		</div>
 	</div>
-</div>
 
-	
 
-<div class="form-horizontal">
-	<%= form_for(@shipping_address, url: members_shipping_addresses_path, method: :post) do |f| %>
+
+	<div class="form-horizontal">
+		<%= form_for(@shipping_address, url: members_shipping_addresses_path, method: :post) do |f| %>
 		<div class="form-group row">
-	  		<div class="col-3 col-form-label">郵便番号(ハイフンなし)</div>
-	  		<div class="col-3">
-	    	<%= f.text_field :postcode, autofocus: true, autocomplete: "postcode", :class => "form-control" %>
-	    	</div>
+			<div class="col-3 col-form-label">郵便番号(ハイフンなし)</div>
+			<div class="col-3">
+				<%= f.text_field :postcode, autofocus: true, autocomplete: "postcode", :class => "form-control" %>
+			</div>
 		</div>
 
 		<div class="form-group row">
-	    	<label class="col-3 col-form-label">住所</label>
-	    	<div class="col-6">
-	    	<%= f.text_field :address, autofocus: true, autocomplete: "address", :class => "form-control" %>
-	    	</div>
-	  	</div>
+			<label class="col-3 col-form-label">住所</label>
+			<div class="col-6">
+				<%= f.text_field :address, autofocus: true, autocomplete: "address", :class => "form-control" %>
+			</div>
+		</div>
 
-	  	<div class="form-group row">
-	    	<label class="col-3">宛名</label>
-	    	<div class="col-3">
-	      	<%= f.text_field :addressee, autofocus: true, autocomplete: "addressee", :class => "form-control" %>
-	    	</div>
-	  	</div>
+		<div class="form-group row">
+			<label class="col-3">宛名</label>
+			<div class="col-3">
+				<%= f.text_field :addressee, autofocus: true, autocomplete: "addressee", :class => "form-control" %>
+			</div>
+		</div>
 
-	  	<div class="form-group">
-	 		<div class="col-2 offset-8">
-	  		<%= f.submit "登録する", class: "btn btn-success btn-block" %>
-	  		</div>
-	  	</div>
- 	<% end %>
-</div>
-
-<div class="row">
-	<div class="col-8">
-		<table class="table table-bordered">
-			<thead class="thead-light">
-				<tr>
-					<th width="200" height="50">郵便番号</th>
-					<th width="400" height="50">住所</th>
-					<th width="200" height="50">宛名</th>
-					<th width="300" height="50"></th>
-				</tr>
-			</thead>
-			<tbody>
-				<% @shipping_addresses.each do |shipping_address| %>
-				<tr>
-					<td><%= shipping_address.postcode %></td>
-					<td><%= shipping_address.address %></td>
-					<td><%= shipping_address.addressee %></td>
-					<td>
-						<%= link_to "編集",edit_members_shipping_address_path(shipping_address), class: "btn btn-primary" %>
-						<%= link_to "削除", members_shipping_address_path(shipping_address), method: :delete,data: {confirm: "本当に削除してもよろしいですか？"}, class: "btn btn-danger" %>
-					</td>
-				</tr>
-				<% end %>
-			</tbody>
-		</table>
+		<div class="form-group">
+			<div class="col-2 offset-8">
+				<%= f.submit "登録する", class: "btn btn-success btn-block" %>
+			</div>
+		</div>
+		<% end %>
 	</div>
 
+	<div class="row">
+		<div class="col-8">
+			<table class="table table-bordered">
+				<thead class="thead-light">
+					<tr>
+						<th width="200" height="50">郵便番号</th>
+						<th width="400" height="50">住所</th>
+						<th width="200" height="50">宛名</th>
+						<th width="300" height="50"></th>
+					</tr>
+				</thead>
+				<tbody>
+					<% @shipping_addresses.each do |shipping_address| %>
+					<tr>
+						<td class="align-middle"><%= shipping_address.postcode %></td>
+						<td class="align-middle"><%= shipping_address.address %></td>
+						<td class="align-middle"><%= shipping_address.addressee %></td>
+						<td>
+							<%= link_to "編集",edit_members_shipping_address_path(shipping_address), class: "btn btn-primary" %>
+							<%= link_to "削除", members_shipping_address_path(shipping_address), method: :delete,data: {confirm: "本当に削除してもよろしいですか？"}, class: "btn btn-danger" %>
+						</td>
+					</tr>
+					<% end %>
+				</tbody>
+			</table>
+		</div>
 
-</div>
+
+	</div>
 
 </div>
