@@ -1,17 +1,18 @@
 <h1>Admins_ProductGenres_Edit</h1>
 
-<h2>ジャンル編集</h2>
-
-<div>
-	<%= form_with(model: @genre, url: admins_product_genre_path, method: :patch, local:true) do |form| %>
-		<div class="field">
-			<%= form.label :ジャンル %>
-			<%= form.text_field :category %>
-			<%= form.radio_button :is_enabled, :true, checked: true %>
-			<%= form.label :有効 %>
-			<%= form.radio_button :is_enabled, :false %>
-			<%= form.label :無効 %>
-			<%= form.submit %>
-		</div>
-	<% end %>
+<div class="container">
+<h4>ジャンル編集</h4>
+	<div style="padding-top: 25px;">
+		<%= form_with model: @genre, url: admins_product_genre_path, method: :patch, local:true do |form| %>
+			<div class="field">
+				<%= form.label :ジャンル %>
+				<%= form.text_field :category %>
+				<%= form.radio_button :is_enabled, :true, checked: true %>
+				<%= form.label :有効 %>
+				<%= form.radio_button :is_enabled, :false %>
+				<%= form.label :無効 %>
+				<%= form.submit "変更を保存する", class: "btn btn-primary" %>
+			</div>
+		<% end %>
+	</div>
 </div>

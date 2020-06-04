@@ -1,6 +1,6 @@
 class Admins::ProductsController < ApplicationController
 	def index
-		@products = Product.all
+		@products = Product.page(params[:page]).per(10)
 	end
 
 	def show
@@ -31,7 +31,7 @@ class Admins::ProductsController < ApplicationController
 		if @product.update(product_params)
 			redirect_to admins_products_path
 		else
-			render "edit"
+			render "index"
 		end
 	end
 

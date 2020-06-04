@@ -4,6 +4,7 @@ class Members::ProductsController < ApplicationController
 	end
 
 	def show
+		@cart_item = CartItem.new
 		@product = Product.find(params[:id])
 		@tax = 1.1
 	end

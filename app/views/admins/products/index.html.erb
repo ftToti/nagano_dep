@@ -3,9 +3,12 @@
 <%= link_to '商品ジャンル一覧', admins_product_genres_path %>
 <div class="container">
 	<h2>商品一覧</h2>
-
+	<div class="text-right">
+		<%= link_to '＋', new_admins_product_path,
+		 class: "btn btn-primary rounded-circle p-0 text-center", style: "width:2rem; height:2rem;" %>
+	</div>
 	<table class="table">
-		<thead>
+		<thead class="thead-light">
 			<tr class="active">
 				<th>商品ID</th>
 				<th>商品名</th>
@@ -32,4 +35,5 @@
 			<% end %>
 		</tbody>
 	</table>
+	<%= paginate @products %>
 </div>

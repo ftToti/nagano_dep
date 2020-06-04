@@ -6,14 +6,17 @@ class Members::CartItemsController < ApplicationController
 
 	def create
 		@cart = CartItem.new(cart_item_params)
-		@cart.save!
+		@cart.save
 		redirect_to members_products_path
 	end
 
 	def update
 		@cart = CartItem.find(params[:id])
-		@cart.update(cart_item_params)
+		if @cart.update(cart_item_params)
 		redirect_to members_cart_item_path
+		else
+		redirect_to members_products_path
+		end
 	end
 
 	def destroy
@@ -27,6 +30,6 @@ class Members::CartItemsController < ApplicationController
 
 	private
 	def cart_item_params
-		params.permit(:member_id, :product_id, :number)
+		params.require(:cart_item).permit(:member_id, :product_id, :number)
 	end
 end
