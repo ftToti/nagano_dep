@@ -2,44 +2,47 @@
 <html>
   <head>
     <title>長野cake</title>
-    <%= csrf_meta_tags %>
-    <%= csp_meta_tag %>
+      <%= csrf_meta_tags %>
+      <%= csp_meta_tag %>
 
-    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+      <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+      <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
     <script src="https://kit.fontawesome.com/efa75c5e0c.js" crossorigin="anonymous"></script>
-      </head>
+  </head>
 
           <body>
             <header>
-              <div class="container">
-              <nav class="nav navbar-nav navbar-left">
-                <span>長野cake</span>
+              <nav class="navbar navbar-expand-lg">
+                <div class="container">
+                  <ul class="nav navbar-nav mr-auto">
+                    <li class="nav-item">
+                      <span><%= link_to image_tag('nagano_cake_logo2.png'), "/" %></span>
+                    </li>
+                  </ul>
+
+
+                  <ul class="nav navbar-nav navbar-right">
+                    <% if member_signed_in? %>
+                      <li>ようこそ、</li>
+                      <li><%= link_to 'マイページ', "#" %></li>
+                      <li><%= link_to '商品一覧', "#" %></li>
+                      <li><%= link_to 'カート', "#" %></li>
+                      <li><%= link_to 'ログアウト', destroy_member_session_path, method: :delete %></li>
+                    <% elsif admin_signed_in? %>
+                      <li><%= link_to '商品一覧', admins_products_path %></li>
+                      <li><%= link_to '会員一覧', admins_members_path %></li>
+                      <li><%= link_to '注文履歴一覧', "#" %></li>
+                      <li><%= link_to 'ジャンル一覧', admins_product_genres_path %></li>
+                      <li><%= link_to 'ログアウト', destroy_admin_session_path, method: :delete %></li>
+                    <% else %>
+                      <li><%= link_to '商品一覧', "#" %></li>
+                      <li><%= link_to '新規登録', new_member_registration_path %></li>
+                      <li><%= link_to 'ログイン', new_member_session_path %></li>
+                    <% end %>
+                  </ul>
+                  </nav>
+                </div>
               </nav>
-
-                <nav>
-                <ul class="nav navbar-nav navbar-right">
-                <% if member_signed_in? %>
-                  <li>ようこそ、</li>
-                  <li>マイページ</li>
-                  <li>商品一覧</li>
-                  <li>カート</li>
-                  <li>ログイン</li>
-                <% elsif admin_signed_in? %>
-                  <li><%= link_to '商品一覧', admins_products_path %></li>
-                  <li><%= link_to '会員一覧', admins_members_path %></li>
-                  <li>注文履歴一覧</li>
-                  <li><%= link_to 'ジャンル一覧', admins_product_genres_path %></li>
-                  <li><%= link_to 'ログアウト', destroy_admin_session_path, method: :delete %></li>
-                <% else %>
-                  <li>商品一覧</li>
-                  <li>新規登録</li>
-                  <li><%= link_to 'ログイン', new_member_session_path %></li>
-                <% end %>
-                </ul>
-                </nav>
-
-              </div>
               <%= yield %>
             </header>
           </body>
