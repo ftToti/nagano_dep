@@ -1,21 +1,28 @@
+<%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
 <div class="container">
   <div class="row">
-    <div class="col-xs-8 col-xs-offset-2">
-      <h2>会員の方はこちらからログイン</h2>
+      <div class="col-4 offset-2 align-items-center table-active text-center h4">会員の方はこちらからログイン</div>
+  </div>
+
+  <div class="row">
+    <div class="col-8">
+      <table class="table table-borderless">
+        <tr>
+          <td class="align-middle">メールアドレス</td>
+          <td colspan="6"><%= f.email_field :email, autofocus: true, autocomplete: "email", :class => "form-control" %></td>
+        </tr>
+        <tr>
+          <td class="align-middle">パスワード</td>
+          <td colspan="6"><%= f.password_field :password, autocomplete: "current-password", :class => "form-control" %></td>
+          <td></td>
+        </tr>
+      </table>
     </div>
+  </div>
+    
 
-    <div class="col-xs-6 col-xs-offset-6">
-      <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-        <div class="field">
-          <%= f.label :email, "メールアドレス" %><br />
-          <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
-        </div>
-
-        <div class="field">
-          <%= f.label :password, "パスワード" %><br />
-          <%= f.password_field :password, autocomplete: "current-password" %>
-        </div>
-
+  <div class="col-xs-6 col-xs-offset-6">
+      
         <% if devise_mapping.rememberable? %>
           <div class="field">
             <%= f.check_box :remember_me %>
