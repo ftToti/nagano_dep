@@ -1,1 +1,78 @@
-<h2>注文情報確認</h2>
+<div class="container">
+	<h3>注文情報確認</h3>
+
+
+	<table class="table table-bordered">
+		<thead class="thead-light">
+			<tr>
+				<th>商品名</th>
+				<th>単価(税込)</th>
+				<th>数量</th>
+				<th>小計</th>
+			</tr>
+		</thead>
+		<tbody>
+			<% @carts.each do |cart| %>
+				<tr>
+					<td>
+						<%= attachment_image_tag @product, :image, fallback: 'no_image.jpg', size: '50x40' %>
+						<%= cart.product.name %>
+					</td>
+					<td><%= (cart.product.unit_price * @tax).round %></td>
+				</tr>
+		</tbody>
+	</table>
+
+    <table class="table table-bordered">
+
+		<thead class="thead-light">
+			<tr>
+				<th>送料</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>800</td>
+      </tr>
+    </tbody>
+
+    <thead class="thead-light">
+			<tr>
+				<th>商品合計</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><%= ((cart.product.unit_price * @tax).round) * cart.number %></td>
+      </tr>
+    </tbody>
+
+    <thead class="thead-light">
+      <tr>
+				<th>請求金額</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>800 + <%= ((cart.product.unit_price * @tax).round) * cart.number %></td>
+      </tr>
+    </tbody>
+    <% end %>
+    </table>
+
+    <h2>支払方法</h2>
+    <% if @order.payment_method == true %>
+      <p>銀行振込</p>
+    <% else %>
+      <p>クレジットカード</p>
+    <% end %>
+
+    <h2>お届け先</h2>
+
+    
+    <%= @order.postcode %>
+    <%= @order.address %>
+    <%= @order.addressee %>
+
+	<%= link_to "購入を確定する", members_thanks_path, class: "btn btn-primary" %>
+</div>
