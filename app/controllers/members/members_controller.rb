@@ -7,8 +7,11 @@ class Members::MembersController < ApplicationController
 	end
 	def update
 		@member = Member.find(params[:id])
-		@member.update(member_params)
-		redirect_to members_member_path(@member)
+		if @member.update(member_params)
+			redirect_to members_member_path(@member)
+		else
+			render "edit"
+		end
 	end
 	def disable_confirm
 		@member = Member.find(params[:id])

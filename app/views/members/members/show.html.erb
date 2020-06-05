@@ -5,7 +5,7 @@
 	<div class="row">
 		<div class="col-1 font-weight-bold h5">登録情報</div>
 		<div class="col-2"><%= link_to "編集する", edit_members_member_path, class: "btn btn-primary btn-block" %></div>
-		<div class="col-2"><%= link_to "パスワードを変更する", edit_member_password_path(current_member) %></div>
+		<div class="col-2"><%= link_to "パスワードを変更する", edit_member_password_path(@member) %></div>
 	</div>
 
 	<div class="row">
@@ -14,11 +14,11 @@
 				<tbody>
 					<tr>
 						<td class="table-active" width="300">氏名</td>
-						<td width="700"><%= @member.last_name %></td>
+						<td width="700"><%= @member.last_name %>　<%= @member.first_name %></td>
 					</tr>
 					<tr>
 						<td class="table-active">カナ</td>
-						<td><%= @member.last_name_kana %></td>
+						<td><%= @member.last_name_kana %>　<%= @member.first_name_kana %></td>
 					</tr>
 					<tr>
 						<td class="table-active">郵便番号</td>
