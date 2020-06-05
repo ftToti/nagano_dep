@@ -15,10 +15,14 @@
 			<% @carts.each do |cart| %>
 				<tr>
 					<td>
-						<%= attachment_image_tag @product, :image, fallback: 'no_image.jpg', size: '50x40' %>
+						<%= attachment_image_tag cart.product, :image, fallback: 'no_image.jpg', size: '50x40' %>
 						<%= cart.product.name %>
 					</td>
 					<td><%= (cart.product.unit_price * @tax).round %></td>
+          <td>
+							<%= cart.number %>
+          </td>
+          <td><%= ((cart.product.unit_price * @tax).round) * cart.number %></td>
 				</tr>
 		</tbody>
 	</table>
@@ -54,7 +58,7 @@
     </thead>
     <tbody>
       <tr>
-        <td>800 + <%= ((cart.product.unit_price * @tax).round) * cart.number %></td>
+        <td><%= 800 + ((cart.product.unit_price * @tax).round) * cart.number %></td>
       </tr>
     </tbody>
     <% end %>
@@ -69,7 +73,7 @@
 
     <h2>お届け先</h2>
 
-    
+
     <%= @order.postcode %>
     <%= @order.address %>
     <%= @order.addressee %>
