@@ -1,0 +1,23 @@
+<h1>Admins_Order_Index</h1>
+
+<div class="container">
+	<h4>注文履歴一覧</h4>
+	<table class="table">
+		<thead class="thead-light">
+			<tr>
+				<th>購入日時</th>
+				<th>購入者</th>
+				<th>購入個数</th>
+				<th>注文ステータス</th>
+			</tr>
+		</thead>
+		<tbody>
+			<% @orders.each do |order| %>
+				<tr>
+					<td><%= order.created_at.strftime('%Y/%m/%d %H:%M:%S') %></td>
+					<td><%= order.member.last_name + order.member.first_name %></td>
+				</tr>
+			<% end %>
+		</tbody>
+	</table>
+</div>

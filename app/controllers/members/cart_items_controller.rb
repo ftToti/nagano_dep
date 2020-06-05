@@ -26,6 +26,9 @@ class Members::CartItemsController < ApplicationController
 	end
 
 	def destroy_all
+		@carts = current_member.cart_items
+		@carts.destroy_all
+		redirect_to members_products_path
 	end
 
 	private
