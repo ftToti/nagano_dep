@@ -18,6 +18,7 @@ class Members::OrdersController < ApplicationController
 
     #@oreder.member_id = current_member.id
 
+
     @order.save
     current_member.cart_items.each do |cart|
       @op = OrderProduct.new(order_product_params)
