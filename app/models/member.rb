@@ -8,4 +8,8 @@ class Member < ApplicationRecord
     has_many :orders, dependent: :destroy
     has_many :shipping_addresses, dependent: :destroy
 
+    def active_for_authentication?
+    super && (self.is_enabled == true)
+  	end
+
 end
