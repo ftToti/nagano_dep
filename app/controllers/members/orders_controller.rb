@@ -1,11 +1,11 @@
 class Members::OrdersController < ApplicationController
 
   def index
-
+    @orders = current_member.orders
   end
 
   def show
-
+    @order = Order.find(params[:id])
   end
 
   def new
