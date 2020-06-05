@@ -17,6 +17,7 @@
 					<td>
 						<%= attachment_image_tag cart.product, :image, fallback: 'no_image.jpg', size: '50x40' %>
 						<%= cart.product.name %>
+            
 					</td>
 					<td><%= (cart.product.unit_price * @tax).round %></td>
           <td>
