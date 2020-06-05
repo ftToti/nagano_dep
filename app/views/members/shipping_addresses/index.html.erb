@@ -6,10 +6,8 @@
 		</div>
 	</div>
 
-
-
-	<div class="form-horizontal">
-		<%= form_for(@shipping_address, url: members_shipping_addresses_path, method: :post) do |f| %>
+	<%= form_for(@shipping_address, url: members_shipping_addresses_path) do |f| %>
+	<%= render 'layouts/error_messages', model: f.object %>
 		<div class="form-group row">
 			<div class="col-3 col-form-label">郵便番号(ハイフンなし)</div>
 			<div class="col-3">
@@ -36,8 +34,7 @@
 				<%= f.submit "登録する", class: "btn btn-success btn-block" %>
 			</div>
 		</div>
-		<% end %>
-	</div>
+	<% end %>
 
 	<div class="row">
 		<div class="col-8">
@@ -65,8 +62,5 @@
 				</tbody>
 			</table>
 		</div>
-
-
 	</div>
-
 </div>
