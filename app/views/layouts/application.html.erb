@@ -23,15 +23,15 @@
 
                   <ul class="nav navbar-nav navbar-right">
                     <% if member_signed_in? %>
-                      <li>ようこそ、xxxさん！</li>
+                      <li>ようこそ、<%= current_member.first_name %> さん！</li>
                       <li><%= link_to 'マイページ', "#" %></li>
-                      <li><%= link_to '商品一覧', "#" %></li>
-                      <li><%= link_to 'カート', "#" %></li>
+                      <li><%= link_to '商品一覧', members_products_path %></li>
+                      <li><%= link_to 'カート', members_cart_item_path(current_member) %></li>
                       <li><%= link_to 'ログアウト', destroy_member_session_path, method: :delete %></li>
                     <% elsif admin_signed_in? %>
                       <li><%= link_to '商品一覧', admins_products_path %></li>
                       <li><%= link_to '会員一覧', admins_members_path %></li>
-                      <li><%= link_to '注文履歴一覧', "#" %></li>
+                      <li><%= link_to '注文履歴一覧', admins_orders_path %></li>
                       <li><%= link_to 'ジャンル一覧', admins_product_genres_path %></li>
                       <li><%= link_to 'ログアウト', destroy_admin_session_path, method: :delete %></li>
                     <% else %>
