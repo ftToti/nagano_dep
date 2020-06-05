@@ -3,7 +3,7 @@
 <div class="container">
 	<h4>注文履歴一覧</h4>
 
-	<tabele class="table table-bordered">
+	<table class="table table-bordered">
 		<thead class="thead-light">
 			<tr>
 				<th>注文日</th>
@@ -40,7 +40,7 @@
 							発送済み
 						<% end %>
 					</td>
-					<td><%= link_to '表示する', members_order_path(order) class: 'btn btn-primary' %></td>
+					<td><%= link_to '表示する', members_order_path(order), class: 'btn btn-primary' %></td>
 				</tr>
 			<% end %>
 		</tbody>
