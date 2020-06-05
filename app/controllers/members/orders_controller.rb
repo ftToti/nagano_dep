@@ -14,15 +14,14 @@ class Members::OrdersController < ApplicationController
 
   def create
     @tax = 1.1
-    byebug
-    @order =Order.new(order_params_s)
-    @oreder.member_id = current_member.id
+    @order =Order.new(order_params)
+    #@oreder.member_id = current_member.id
     @order.save
     current_member.cart_items.each do |cart|
       @op = OrderProduct.new(order_product_params)
       @op.product_id = cart.product_id
       @op.order_id = @order.id
-      @op.purchase_price = (@op.product.unit_price * @tax).round
+      @op.purchase_price = (cart.product.unit_price * @tax).round
       @op.number = cart.number
       @op.save
     end
@@ -61,11 +60,7 @@ class Members::OrdersController < ApplicationController
     params.require(:order).permit(:member_id, :payment_method, :order_status, :postcode, :address, :addressee)
   end
 
-  def order_params_s
-    params.require(:order).permit(:member_id, :payment_method, :order_status, :postcode, :address, :addressee)
-  end
-
   def order_product_params
-    params.require(:order_product).permit(:product_id, :order_id, :purchase_price, :number, :production_status)
+    params.permit(:product_id, :order_id, :purchase_price, :number, :production_status)
   end
 end
