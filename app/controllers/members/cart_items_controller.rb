@@ -7,7 +7,7 @@ class Members::CartItemsController < ApplicationController
 	def create
 		@cart = CartItem.new(cart_item_params)
 		@cart.save
-		redirect_to members_products_path
+		redirect_to members_cart_item_path(current_member)
 	end
 
 	def update
@@ -26,6 +26,9 @@ class Members::CartItemsController < ApplicationController
 	end
 
 	def destroy_all
+		@carts = current_member.cart_items
+		@carts.destroy_all
+		redirect_to members_products_path
 	end
 
 	private

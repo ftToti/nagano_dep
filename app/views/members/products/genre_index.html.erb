@@ -21,13 +21,13 @@
 		</table>
 	</div>
 	<div class="col-9">
-		<h3><b>商品一覧</b>(全<%= @genre.products.count %>件)</h3>
-		<% @genre.products.each do |product| %>
+		<h3><b>商品一覧</b>(全<%= @products.count %>件)</h3>
+		<% @products.each do |product| %>
 			<div class= "float-left", style="padding: 10px;">
 				<%= link_to members_product_path(product) do %>
 					<%= attachment_image_tag product, :image, fallback: "no_image.jpg", size: "200x160" %><br>
 					<%= product.name %><br>
-					¥<%= product.unit_price %>
+					¥<%= (product.unit_price * @tax).round %>
 				<% end %>
 			</div>
 		<% end %>
