@@ -14,7 +14,6 @@ class Members::OrdersController < ApplicationController
 
   def create
     @tax = 1.1
-    byebug
     @order =Order.new(order_params_s)
     @oreder.member_id = current_member.id
     @order.save
@@ -58,10 +57,6 @@ class Members::OrdersController < ApplicationController
 
   private
 	def order_params
-    params.require(:order).permit(:member_id, :payment_method, :order_status, :postcode, :address, :addressee)
-  end
-
-  def order_params_s
     params.require(:order).permit(:member_id, :payment_method, :order_status, :postcode, :address, :addressee)
   end
 
