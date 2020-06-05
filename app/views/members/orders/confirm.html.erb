@@ -78,5 +78,5 @@
     <%= @order.address %>
     <%= @order.addressee %>
 
-	<%= link_to "購入を確定する", members_thanks_path, class: "btn btn-primary" %>
+	<%= link_to "購入を確定する", members_orders_path, method: :post, class: "btn btn-primary" %>
 </div>

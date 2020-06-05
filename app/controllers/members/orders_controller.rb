@@ -13,9 +13,21 @@ class Members::OrdersController < ApplicationController
   end
 
   def create
-    @order =Order.new(order_params)
+    @tax = 1.1
+    byebug
+    @order =Order.new(order_params_s)
     @oreder.member_id = current_member.id
     @order.save
+    current_member.cart_items.each do |cart|
+      @op = OrderProduct.new(order_product_params)
+      @op.product_id = cart.product_id
+      @op.order_id = @order.id
+      @op.purchase_price = (@op.product.unit_price * @tax).round
+      @op.number = cart.number
+      @op.save
+    end
+    current_member.cart_items.destroy_all
+    redirect_to members_thanks_path
   end
 
   def confirm
@@ -47,5 +59,13 @@ class Members::OrdersController < ApplicationController
   private
 	def order_params
     params.require(:order).permit(:member_id, :payment_method, :order_status, :postcode, :address, :addressee)
+  end
+
+  def order_params_s
+    params.require(:order).permit(:member_id, :payment_method, :order_status, :postcode, :address, :addressee)
+  end
+
+  def order_product_params
+    params.require(:order_product).permit(:product_id, :order_id, :purchase_price, :number, :production_status)
   end
 end
