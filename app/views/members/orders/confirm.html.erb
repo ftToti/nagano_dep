@@ -17,6 +17,7 @@
 					<td>
 						<%= attachment_image_tag cart.product, :image, fallback: 'no_image.jpg', size: '50x40' %>
 						<%= cart.product.name %>
+            
 					</td>
 					<td><%= (cart.product.unit_price * @tax).round %></td>
           <td>
@@ -78,5 +79,10 @@
     <%= @order.address %>
     <%= @order.addressee %>
 
-	<%= link_to "購入を確定する", members_orders_path, method: :post, class: "btn btn-primary" %>
+    <%= form_with model: @order, url: members_orders_path, method: :post, local: true do |order| %>
+      <%= order.hidden_field :member_id, :value => current_member.id %>
+      <%= order.submit %>
+    <% end %>
+
+	<!-- <%= link_to "購入を確定する", members_orders_path, method: :post, class: "btn btn-primary" %> -->
 </div>
