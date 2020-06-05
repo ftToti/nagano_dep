@@ -15,7 +15,9 @@ class Members::OrdersController < ApplicationController
   def create
     @tax = 1.1
     @order =Order.new(order_params)
+
     #@oreder.member_id = current_member.id
+
     @order.save
     current_member.cart_items.each do |cart|
       @op = OrderProduct.new(order_product_params)
