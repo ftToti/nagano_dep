@@ -37,6 +37,7 @@
           <td><%= 800 %></td>
         </tr>
 
+
         <tr>
           <th class="table-active">商品合計</th>
           <td><%= @subtotal %></td>
@@ -68,6 +69,7 @@
           <td><h6 class="col-8"><%= @order.address %></td><br >
           <td><h6 class="col-8"><%= @order.addressee %></td>
         </tr>
+
 
         <tr>
           <%= form_with model: @order, url: members_orders_path, method: :post, local: true do |order| %>

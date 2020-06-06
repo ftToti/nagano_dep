@@ -1,7 +1,10 @@
 class Members::ShippingAddressesController < ApplicationController
+	before_action :authenticate_member!
+	
 	def index
 		@shipping_address = ShippingAddress.new
-		@shipping_addresses = ShippingAddress.all
+		@member = current_member
+		@shipping_addresses = @member.shipping_addresses
 	end
 
 	def create
