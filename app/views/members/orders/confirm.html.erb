@@ -79,7 +79,7 @@
       <%= order.hidden_field :address, :value => @order.address %>
       <%= order.hidden_field :addressee, :value => @order.addressee %>
       <%= order.hidden_field :payment_method, :value => @order.payment_method %>
-      <%= order.hidden_field :subtotal, :value => @subtotal %>
+      <%= order.hidden_field :subtotal, :value => @subtotal + 800 %>
       <%= order.submit %>
     <% end %>
 
