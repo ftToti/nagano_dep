@@ -18,7 +18,10 @@
             <% @members.each do |member| %>
             <tr>
               <td><%= member.id %></td>
-              <td><%= link_to member.last_name, admins_member_path(member), class: "member_#{member.id}" %><%= link_to member.first_name, admins_member_path(member), class: "member_#{member.id}" %></td>
+              <td><%= link_to admins_member_path(member) do %>
+                  <%= member.last_name %>
+                  <%= member.first_name %></td>
+                  <% end %>
               <td><%= member.email %></td>
               <% if member.is_enabled == true %>
                 <td>有効</td>
