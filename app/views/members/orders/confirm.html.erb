@@ -1,88 +1,83 @@
 <div class="container">
-	<h3>注文情報確認</h3>
-
-
-	<table class="table table-bordered">
-		<thead class="thead-light">
-			<tr>
-				<th>商品名</th>
-				<th>単価(税込)</th>
-				<th>数量</th>
-				<th>小計</th>
-			</tr>
-		</thead>
-		<tbody>
-			<% @carts.each do |cart| %>
-				<tr>
-					<td>
-						<%= attachment_image_tag cart.product, :image, fallback: 'no_image.jpg', size: '50x40' %>
-						<%= cart.product.name %>
-            
-					</td>
-					<td><%= (cart.product.unit_price * @tax).round %></td>
-          <td>
-							<%= cart.number %>
-          </td>
-          <td><%= ((cart.product.unit_price * @tax).round) * cart.number %></td>
-				</tr>
-		</tbody>
-	</table>
-
+    <h3>注文情報確認</h3>
     <table class="table table-bordered">
-
-		<thead class="thead-light">
-			<tr>
-				<th>送料</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td>800</td>
-      </tr>
-    </tbody>
-
-    <thead class="thead-light">
-			<tr>
-				<th>商品合計</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><%= ((cart.product.unit_price * @tax).round) * cart.number %></td>
-      </tr>
-    </tbody>
-
-    <thead class="thead-light">
-      <tr>
-				<th>請求金額</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><%= 800 + ((cart.product.unit_price * @tax).round) * cart.number %></td>
-      </tr>
-    </tbody>
-    <% end %>
+        <thead class="thead-light">
+            <tr>
+                <th>商品名</th>
+                <th>単価(税込)</th>
+                <th>数量</th>
+                <th>小計</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% @carts.each do |cart| %>
+            <tr>
+                <td>
+                    <%= attachment_image_tag cart.product, :image, fallback: 'no_image.jpg', size: '50x40' %>
+                    <%= cart.product.name %>
+                </td>
+                <td>
+                    <%= (cart.product.unit_price * @tax).round %>
+                </td>
+                <td>
+                    <%= cart.number %>
+                </td>
+                <td>
+                    <%= ((cart.product.unit_price * @tax).round) * cart.number %>
+                </td>
+            </tr>
+        </tbody>
     </table>
-
+    <table class="table table-bordered">
+        <thead class="thead-light">
+            <tr>
+                <th>送料</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>800</td>
+            </tr>
+        </tbody>
+        <thead class="thead-light">
+            <tr>
+                <th>商品合計</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>
+                    <%= ((cart.product.unit_price * @tax).round) * cart.number %>
+                </td>
+            </tr>
+        </tbody>
+        <thead class="thead-light">
+            <tr>
+                <th>請求金額</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>
+                    <%= 800 + ((cart.product.unit_price * @tax).round) * cart.number %>
+                </td>
+            </tr>
+        </tbody>
+        <% end %>
+    </table>
     <h2>支払方法</h2>
     <% if @order.payment_method == true %>
-      <p>銀行振込</p>
+    <p>銀行振込</p>
     <% else %>
-      <p>クレジットカード</p>
+    <p>クレジットカード</p>
     <% end %>
-
     <h2>お届け先</h2>
-
-
     <%= @order.postcode %>
     <%= @order.address %>
     <%= @order.addressee %>
-
     <%= form_with model: @order, url: members_orders_path, method: :post, local: true do |order| %>
-      <%= order.hidden_field :member_id, :value => current_member.id %>
-      <%= order.submit %>
+    <%= order.hidden_field :member_id, :value => current_member.id %>
+    <%= order.submit %>
     <% end %>
-
-	<!-- <%= link_to "購入を確定する", members_orders_path, method: :post, class: "btn btn-primary" %> -->
+    <!-- <%= link_to "購入を確定する", members_orders_path, method: :post, class: "btn btn-primary" %> -->
 </div>
