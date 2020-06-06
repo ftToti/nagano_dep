@@ -81,6 +81,11 @@
 
     <%= form_with model: @order, url: members_orders_path, method: :post, local: true do |order| %>
       <%= order.hidden_field :member_id, :value => current_member.id %>
+      <%= order.hidden_field :postcode, :value => @order.postcode %>
+      <%= order.hidden_field :address, :value => @order.address %>
+      <%= order.hidden_field :addressee, :value => @order.addressee %>
+      <%= order.hidden_field :payment_method, :value => @order.payment_method %>
+      <%= order.hidden_field :subtotal, :value => @subtotal %>
       <%= order.submit %>
     <% end %>
 
