@@ -1,4 +1,6 @@
 class Members::MembersController < ApplicationController
+	before_action :authenticate_member!
+
 	def show
 		@member = Member.find(params[:id])
 	end
@@ -14,13 +16,11 @@ class Members::MembersController < ApplicationController
 		end
 	end
 	def disable_confirm
-		@member = Member.find(params[:id])
 	end
 	def disable
 		@member = Member.find(params[:id])
 		#is_enabledカラムにフラグを立てる(defaultはtrue)
 		@member.update(is_enabled: false)
-		reset_session
 		flash[:notice] = "ありがとうございました。またのご利用を心よりお待ちしております。"
 		redirect_to root_path
 	end

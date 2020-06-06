@@ -60,19 +60,16 @@
       </tr>
     </tbody>
     </table>
-
     <h2>支払方法</h2>
     <% if @order.payment_method == true %>
-      <p>銀行振込</p>
+    <p>銀行振込</p>
     <% else %>
-      <p>クレジットカード</p>
+    <p>クレジットカード</p>
     <% end %>
-
     <h2>お届け先</h2>
     <%= @order.postcode %>
     <%= @order.address %>
     <%= @order.addressee %>
-
     <%= form_with model: @order, url: members_orders_path, method: :post, local: true do |order| %>
       <%= order.hidden_field :member_id, :value => current_member.id %>
       <%= order.hidden_field :postcode, :value => @order.postcode %>
