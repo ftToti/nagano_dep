@@ -85,8 +85,8 @@ ActiveRecord::Schema.define(version: 2020_06_01_092433) do
   end
 
   create_table "product_genres", force: :cascade do |t|
-    t.string "category", default: "1", null: false
-    t.boolean "is_enabled", default: true, null: false
+    t.string "category", null: false
+    t.boolean "is_enabled", default: true
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
