@@ -1,8 +1,7 @@
 class Members::ProductsController < ApplicationController
 	def index
-		@products = Product.joins(:product_genre).where(product_genres: {is_enabled: true})
 		@tax = 1.1
-		@products = Product.page(params[:page]).reverse_order
+		@products = Product.joins(:product_genre).where(product_genres: {is_enabled: true}).page(params[:page]).reverse_order
 	end
 
 	def show
@@ -13,7 +12,7 @@ class Members::ProductsController < ApplicationController
 
 	def genre_index
 		@genre = ProductGenre.find(params[:id])
-		@products = @genre.products.joins(:product_genre).where(product_genres: {is_enabled: true})
+		@products = @genre.products.joins(:product_genre).where(product_genres: {is_enabled: true}).page(params[:page]).reverse_order
 		@tax = 1.1
 	end
 end

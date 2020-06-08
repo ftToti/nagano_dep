@@ -1,4 +1,6 @@
 class Admins::ProductsController < ApplicationController
+	before_action :authenticate_admin!
+
 	def index
 		@products = Product.page(params[:page]).per(10)
 	end
@@ -15,7 +17,7 @@ class Admins::ProductsController < ApplicationController
 	def create
 		@product = Product.new(product_params)
 		if @product.save
-			redirect_to admins_products_path
+			redirect_to admins_product_path(@product)
 		else
 			render "new"
 		end
