@@ -5,12 +5,6 @@ class Admins::ProductsController < ApplicationController
 		@products = Product.page(params[:page]).per(10)
 	end
 
-	def destroy
-		@product = Product.find(params[:id])
-		@product.destroy
-		redirect_to admins_products_path
-	end
-
 	def show
 		@product = Product.find(params[:id])
 		@tax = 1.1
