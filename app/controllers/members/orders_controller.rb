@@ -15,16 +15,9 @@ class Members::OrdersController < ApplicationController
 
   def create
     @tax = 1.1
-    if params[:shipping_address] == "1"
-      @order = Order.new(current_member_address)
-    elsif params[:shipping_address] == "2"
-      @order = Order.new(selected_shipping_address)
-      #@order = Order.new(shipping_address)
-    elsif params[:shipping_address] == "3"
-      @order =Order.new(order_params)
-    end
+    @order =Order.new(order_params)
     #@oreder.member_id = current_member.id
-    if @order.save
+    @order.save
     current_member.cart_items.each do |cart|
       @op = OrderProduct.new(order_product_params)
       @op.product_id = cart.product_id
@@ -35,9 +28,6 @@ class Members::OrdersController < ApplicationController
     end
       current_member.cart_items.destroy_all
       redirect_to members_thanks_path
-    else
-      render :new
-    end
   end
 
   def confirm
@@ -75,21 +65,4 @@ class Members::OrdersController < ApplicationController
     params.permit(:product_id, :order_id, :purchase_price, :number, :production_status)
   end
 
-  def current_member_address
-    #@order = Order.new
-    {}.tap do |order|
-      order[:postcode] = current_member.postcode
-      order[:address] = current_member.address
-      order[:addressee] = current_member.last_name + current_member.first_name
-    end
-  end
-
-  def selected_shipping_address
-    @shipping_address = ShippingAddress.find_by(id: params[:order][:registrated_address])
-    {}.tap do |order|
-      order[:postcode] = @shipping_address.postcode
-      order[:address] = @shipping_address.address
-      order[:addressee] = @shipping_address.addressee
-    end
-  end
 end
