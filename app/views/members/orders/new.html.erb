@@ -1,9 +1,9 @@
 <div class="container">
   <div class="row">
-    <div class="col-2 offset-1 align-items-center table-active text-center h4">注文情報入力</div>
+    <div class="col-2 offset-1 align-items-center table-active text-center h4">注文情報確認</div>
   </div>
   <div class="row mb-4">
-  <%= form_with model: @order, url: members_confirm_path, method: :get, local: true do |f| %>
+  <%= form_with model: @order, url: members_confirm_path, method: :post, local: true do |f| %>
     <div class="field">
       <div class="col-12 font-weight-bold mb-3 h5 ">
         <mark><%= f.label :支払方法 %></mark>
