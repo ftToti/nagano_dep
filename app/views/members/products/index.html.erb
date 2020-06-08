@@ -18,7 +18,7 @@
         </div>
         <div class="col">
             <h3><b>商品一覧</b>(全
-                <%= @products.all.count %>件)</h3>
+                <%= @products.count %>件)</h3>
             <% @products.each do |product| %>
             <div class="float-left" , style="padding: 10px;">
                 <%= link_to members_product_path(product) do %>
