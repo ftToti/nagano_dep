@@ -21,6 +21,7 @@ class Members::MembersController < ApplicationController
 		@member = Member.find(params[:id])
 		#is_enabledカラムにフラグを立てる(defaultはtrue)
 		@member.update(is_enabled: false)
+		reset_session
 		flash[:notice] = "ありがとうございました。またのご利用を心よりお待ちしております。"
 		redirect_to root_path
 	end

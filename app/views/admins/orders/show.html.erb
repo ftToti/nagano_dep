@@ -19,9 +19,9 @@
 			</tr>
 			<tr>
 				<th>支払方法</th>
-				<% if @order.order_status == 0 %>
+				<% if @order.payment_method == 0 %>
 					<td>クレジットカード</td>
-				<% elsif @order.order_status == 1 %>
+				<% elsif @order.payment_method == 1 %>
 					<td>銀行振込</td>
 				<% end %>
 			</tr>
@@ -57,7 +57,7 @@
 							<td><%= pro.number %></td>
 							<td><%= pro.purchase_price * pro.number %></td>
 							<td>
-								<%= form_with model: pro, url: admins_order_product_path, method: :patch, local: true do |f| %>
+								<%= form_with model: pro, url: admins_order_product_path(pro.id), method: :patch, local: true do |f| %>
 									<%= f.select :production_status, [['着手不可', 1],['製作待ち', 2],['製作中', 3],['製作完了', 4]],
 										{}, {class: 'form-control', style: 'width: 50%; display: inline-block;'} %>
 									<%= f.submit '更新', class: 'btn btn-primary' %>
@@ -69,7 +69,7 @@
 			</table>
 		</div>
 		<div class="col">
-			<table class="table table-borderless", style="width: 60%;">
+			<table class="table table-borderless", style="width: 70%;">
 				<tr>
 					<th>商品合計</th>
 					<td><%= @order.subtotal - @order.postage %>円</td>
