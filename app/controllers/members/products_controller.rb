@@ -2,6 +2,7 @@ class Members::ProductsController < ApplicationController
 	def index
 		@tax = 1.1
 		@products = Product.joins(:product_genre).where(product_genres: {is_enabled: true}).page(params[:page]).reverse_order
+		@product = Product.all
 	end
 
 	def show

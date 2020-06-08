@@ -16,7 +16,7 @@ Rails.application.routes.draw do
     resources :members, only: [:index, :show, :edit, :update]
     resources :orders, only: [:index, :show, :update]
     resources :order_products, only: [:update]
-    resources :products, only: [:index, :show, :new, :create, :edit, :update]
+    resources :products, only: [:index, :show, :new, :create, :edit, :update, :destroy]
     resources :product_genres, only: [:index, :create, :edit, :update]
   end
 
