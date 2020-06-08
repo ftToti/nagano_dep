@@ -35,8 +35,10 @@
 							<% elsif order.order_status == 2 %>
 								入金確認
 							<% elsif order.order_status == 3 %>
-								発送準備中
+								製作中
 							<% elsif order.order_status == 4 %>
+								発送準備中
+							<% elsif order.order_status == 5 %>
 								発送済み
 							<% end %>
 						</td>

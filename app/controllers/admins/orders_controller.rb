@@ -12,11 +12,21 @@ class Admins::OrdersController < ApplicationController
 	def update
 		@order = Order.find(params[:id])
 		@order.update(order_params)
-		redirect_to admins_order_path(@order)
+
+		if @order.order_status == 2
+			@order.order_products.each do |op|
+				op.update(production_status: 2)
+			end
+		end
+		redirect_back(fallback_location: root_path)
 	end
 
 	private
 	def order_params
 		params.require(:order).permit(:order_status)
+	end
+
+	def order_product_params
+		params.require(:order_product).permit(:id, :production_status)
 	end
 end
