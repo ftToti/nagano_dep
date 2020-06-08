@@ -3,12 +3,14 @@
         <div class="col-2 offset-1 align-items-center table-active text-center h4">マイページ</div>
     </div>
     <div class="row">
-        <div class="col-1 font-weight-bold h5">登録情報</div>
-        <div class="col-2">
-            <%= link_to "編集する", edit_members_member_path, class: "btn btn-primary btn-block" %>
-        </div>
-        <div class="col-3">
-            <%= link_to "パスワードを変更する", edit_member_registration_path, class: "btn btn-primary btn-block" %>
+        <div class="col-5">
+            <table class="table table-borderless">
+                <tr>
+                    <td class="align-middle h5 font-weight-bolder">登録情報</td>
+                    <td><%= link_to "編集する", edit_members_member_path, class: "btn btn-primary btn-block" %></td>
+                    <td><%= link_to "パスワードを変更する", edit_member_registration_path, class: "btn btn-primary btn-block" %></td>
+                </tr>
+            </table>
         </div>
     </div>
     <div class="row">
@@ -58,20 +60,14 @@
         </div>
     </div>
     <div class="row">
-        <div class="col-4">
+        <div class="col-3">
             <table class="table table-borderless">
                 <tr>
-                    <td width="150">
-                        <h5 class="font-weight-bold">配達先</h5>
-                    </td>
-                    <td>
-                        <%= link_to "一覧を見る", members_shipping_addresses_path, class: "btn btn-primary btn-block" %>
-                    </td>
+                    <td class="align-middle h5 font-weight-bolder">配達先</td>
+                    <td><%= link_to "一覧を見る", members_shipping_addresses_path, class: "btn btn-primary btn-block" %></td>
                 </tr>
                 <tr>
-                    <td width="150">
-                        <h5 class="font-weight-bold">注文履歴</h5>
-                    <td><%= link_to "一覧を見る", members_orders_path, class: "btn btn-primary btn-block" %></td>
+                    <td class="align-middle h5 font-weight-bolder">注文履歴<td><%= link_to "一覧を見る", members_orders_path, class: "btn btn-primary btn-block" %></td>
                 </tr>
             </table>
         </div>
