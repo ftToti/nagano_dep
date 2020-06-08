@@ -22,8 +22,8 @@
         </div>
 
         <div>
-          <%= link_to '編集する',edit_admins_member_path(@member.id), class: "col-xs-2 btn btn-default edit_member_#{@member.id}" %>
-          [ぼたん]注文履歴一覧を見る（後で実装）
+          <%= link_to '編集する',edit_admins_member_path(@member), class: "btn btn-primary" %>
+          <%= link_to '注文履歴一覧を見る', admins_orders_path, class: "btn btn-primary" %>
         </div>
     </div>
   </div>

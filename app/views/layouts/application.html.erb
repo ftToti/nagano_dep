@@ -31,11 +31,11 @@
                     <% elsif admin_signed_in? %>
                       <li><%= link_to '商品一覧', admins_products_path %></li>
                       <li><%= link_to '会員一覧', admins_members_path %></li>
-                      <li><%= link_to '注文履歴一覧', "#" %></li>
+                      <li><%= link_to '注文履歴一覧', admins_orders_path %></li>
                       <li><%= link_to 'ジャンル一覧', admins_product_genres_path %></li>
                       <li><%= link_to 'ログアウト', destroy_admin_session_path, method: :delete %></li>
                     <% else %>
-                      <li><%= link_to '商品一覧', "#" %></li>
+                      <li><%= link_to '商品一覧', members_products_path %></li>
                       <li><%= link_to '新規登録', new_member_registration_path %></li>
                       <li><%= link_to 'ログイン', new_member_session_path %></li>
                     <% end %>
