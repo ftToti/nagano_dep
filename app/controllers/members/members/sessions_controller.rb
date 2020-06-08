@@ -35,7 +35,7 @@ class Members::Members::SessionsController < Devise::SessionsController
     if @member
       if (@member.valid_password?(params[:member][:password]) && (@member.active_for_authentication? == true))
         flash[:error] = "退会済みです。"
-        redirect_to new_member_session_path
+        redirect_to root_path
       end
     else
       flash[:error] = "必須項目を入力してください。"
