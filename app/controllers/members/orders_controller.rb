@@ -21,7 +21,7 @@ class Members::OrdersController < ApplicationController
       @order = Order.new(selected_shipping_address)
       #@order = Order.new(shipping_address)
     elsif params[:shipping_address] == "3"
-      @order =Order.new(order_params)
+      @order = Order.new(order_params)
     end
     #@oreder.member_id = current_member.id
     if @order.save
