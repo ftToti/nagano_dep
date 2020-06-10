@@ -82,6 +82,7 @@
         <%= order.hidden_field :payment_method, :value => @order.payment_method %>
         <%= order.hidden_field :subtotal, :value => @subtotal + 800 %>
         <%= order.submit  :"購入を確定する", class: "btn btn-success btn-block"  %>
+        <%= order.hidden_field :new_address, :value => params[:shipping] %>
       <% end %>
 
     </div>

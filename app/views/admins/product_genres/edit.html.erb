@@ -1,5 +1,7 @@
 <div class="container">
-<h4>ジャンル編集</h4>
+		<div class="row">
+			<div class="col-3 table-active h2 text-center m-4">ジャンル編集</div>
+		</div>
 	<div style="padding-top: 25px;">
 		<%= form_with model: @genre, url: admins_product_genre_path, method: :patch, local:true do |form| %>
 			<div class="field">
