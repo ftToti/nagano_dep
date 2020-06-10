@@ -19,17 +19,18 @@
                 <% end %>
             </table>
         </div>
-        <div class="col">
+        <div class="col-10">
         	<div class="row", style="margin-bottom: 30px;">
-        		<div class="col-7 top-visual">
+        		<div class="col-12 top-visual">
         			<div class="top-visual-content mx-auto">
-        				<span class="text-left">
-        					<p>
-        						ようこそ、NaganoCakeへ！<br>
+        				<span class="text-center">
+        					<h5>
+        						ようこそ、ながのCAKEへ！<br>
         						このサイトは、ケーキ販売のECサイトになります。<br>
-        						会員でない方も商品の閲覧はできますが、<br>
+									</h5>
+        					<p>※会員でない方も商品の閲覧はできますが、<br>
         						購入には会員登録が必要になります。
-        					</p>
+									</p>
         				</span>
         			</div>
         		</div>
@@ -38,7 +39,7 @@
         	<h3>オススメ商品</h3>
         	<div class="row">
             	<% @products.each do |product| %>
-            	<div class="float-left" , style="padding: 10px;">
+            	<div class="float-left" , style="padding: 16px;">
             	    <%= link_to members_product_path(product) do %>
             	    <%= attachment_image_tag product, :image, fallback: "no_image.jpg", size: "200x160" %><br>
             	    <%= product.name %><br>

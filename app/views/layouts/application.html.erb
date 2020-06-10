@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>長野cake</title>
+    <title>ながのcake</title>
       <%= csrf_meta_tags %>
       <%= csp_meta_tag %>
 
@@ -15,7 +15,7 @@
               <nav class="navbar navbar-expand-lg">
                   <ul class="nav navbar-nav mr-auto">
                     <li class="nav-item m-4">
-                      <span><%= link_to image_tag('nagano_cake_logo2.png'), "/" %></span>
+                      <span><%= link_to image_tag('logo.png'), "/" %></span>
                     </li>
                   </ul>
 
@@ -35,6 +35,7 @@
                       <li class="mr-4"><%= link_to 'ログアウト', destroy_admin_session_path, method: :delete, class: "page-link text-dark d-inline-block btn" %></li>
                     <% else %>
                       <li class="mr-4"><%= link_to '商品一覧', members_products_path, class: "page-link text-dark d-inline-block btn" %></li>
+                      <li class="mr-4"><%= link_to '長野CAKEとは', members_about_path, class: "page-link text-dark d-inline-block btn" %></li>
                       <li class="mr-4"><%= link_to '新規登録', new_member_registration_path, class: "page-link text-dark d-inline-block btn" %></li>
                       <li class="mr-4"><%= link_to 'ログイン', new_member_session_path, class: "page-link text-dark d-inline-block btn" %></li>
                     <% end %>
@@ -43,7 +44,9 @@
               </header>
 <div>
               <%= yield %>
+
 </div>
+
           </body>
 </html>
 
