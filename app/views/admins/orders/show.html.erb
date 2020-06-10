@@ -57,9 +57,9 @@
 					<% @products.each do |pro| %>
 						<tr>
 							<td><%= pro.product.name %></td>
-							<td><%= pro.purchase_price %></td>
+							<td><%= pro.purchase_price.to_s(:delimited) %></td>
 							<td><%= pro.number %></td>
-							<td><%= pro.purchase_price * pro.number %></td>
+							<td><%= (pro.purchase_price * pro.number).to_s(:delimited) %></td>
 							<td>
 								<%= form_with model: pro, url: admins_order_product_path(pro.id), method: :patch, local: true do |f| %>
 									<%= f.select :production_status, [['着手不可', 1],['製作待ち', 2],['製作中', 3],['製作完了', 4]],
@@ -76,7 +76,7 @@
 			<table class="table table-borderless", style="width: 70%;">
 				<tr>
 					<th>商品合計</th>
-					<td><%= @order.subtotal - @order.postage %>円</td>
+					<td><%= (@order.subtotal - @order.postage).to_s(:delimited) %>円</td>
 				</tr>
 				<tr>
 					<th>送料</th>
@@ -84,7 +84,7 @@
 				</tr>
 				<tr>
 					<th>請求金額合計</th>
-					<th><%= @order.subtotal %>円</th>
+					<th><%= @order.subtotal.to_s(:delimited) %>円</th>
 				</tr>
 			</table>
 		</div>
