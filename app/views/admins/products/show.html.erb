@@ -22,7 +22,9 @@
 				</div><br>
 				<div>
 					<label style="width: 30%;">税込価格(税抜価格)</label>
-					<span style="width: 45%;"><%= (@product.unit_price * @tax).round %>(<%= @product.unit_price %>)</span>
+					<span style="width: 45%;">
+						<%= ((@product.unit_price * @tax).round).to_s(:delimited) %>(<%= @product.unit_price.to_s(:delimited) %>)
+					</span>
 				<div><br>
 					<label style="width: 30%;">販売ステータス</label>
 					<span style="width: 45%;">
