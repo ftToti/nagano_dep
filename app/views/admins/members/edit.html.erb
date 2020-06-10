@@ -5,44 +5,44 @@
 
   <%= form_for(@member, url:admins_member_path, method: :PATCH ) do |f| %>
   <div class="row">
-    <div class="col-9">
+    <div class="col-7">
     <table class="table table-borderless">
 
       <tr>
-        <td class="align-middle">顧客ID</td>
+        <td class="align-middle">会員ID</td>
         <td><%= @member.id %></td>
       </tr>
 
       <tr>
-        <td class="align-middle"><%= f.label :氏名 %></td>
-        <td><%= f.text_field :last_name, class: "last_name" %></td>
-        <td><%= f.text_field :first_name, class: "first_name" %></td>
+        <td class="align-middle">氏名</td>
+        <td><%= f.text_field :last_name, autofocus: true, autocomplete: "email", :class => "form-control" %></td>
+        <td><%= f.text_field :first_name, autofocus: true, autocomplete: "email", :class => "form-control" %></td>
       </tr>
 
       <tr>
-        <td class="align-middle"><%= f.label :フリガナ %></td>
-        <td><%= f.text_field :last_name_kana, class: "last_name_kana" %></td>
-        <td><%= f.text_field :first_name_kana, class: "first_name_kana" %></td>
+        <td class="align-middle">フリガナ</td>
+        <td><%= f.text_field :last_name_kana, autofocus: true, autocomplete: "email", :class => "form-control" %></td>
+        <td><%= f.text_field :first_name_kana, autofocus: true, autocomplete: "email", :class => "form-control" %></td>
       </tr>
 
       <tr>
-        <td class="align-middle"><%= f.label :郵便番号 %></td>
-        <td><%= f.text_field :postcode, class: "postcode" %></td>
+        <td class="align-middle">郵便番号</td>
+        <td><%= f.text_field :postcode, autofocus: true, autocomplete: "email", :class => "form-control" %></td>
       </tr>
 
       <tr>
-        <td class="align-middle"><%= f.label :住所 %></td>
-        <td><%= f.text_field :address, class: "address" %></td>
+        <td class="align-middle">住所</td>
+        <td colspan="3"><%= f.text_field :address, autofocus: true, autocomplete: "email", :class => "form-control" %></td>
       </tr>
 
         <tr>
-          <td class="align-middle"><%= f.label :電話番号 %></td>
-          <td><%= f.text_field :phone_number, class: "phone_number" %></td>
+          <td class="align-middle">電話番号</td>
+          <td><%= f.text_field :phone_number, autofocus: true, autocomplete: "email", :class => "form-control" %></td>
         </tr>
 
         <tr>
-          <td class="align-middle"><%= f.label :メールアドレス %></td>
-          <td><%= f.text_field :email, class: "email" %></td>
+          <td class="align-middle">メールアドレス</td>
+          <td><%= f.text_field :email, autofocus: true, autocomplete: "email", :class => "form-control" %></td>
         </tr>
     </table>
     </div>
@@ -65,7 +65,7 @@
   </div>
 
   <div class="row">
-    <div class="col-3 offset-2">
+    <div class="col-2">
       <%= f.submit :変更を保存する, class: "btn btn-primary btn-block" %>
     </div>
   </div>

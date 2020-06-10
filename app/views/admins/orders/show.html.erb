@@ -1,9 +1,12 @@
 <div class="container">
-	<h3 style="margin-left: 100px;">注文履歴詳細</h3>
-	<div class="row h5">
-		<table class="table table-borderless">
+	<div class="row">
+        <div class="col-3 offset-1 table-active h3 text-center mb-5">注文履歴詳細</div>
+    </div>
+	<div class="row">
+		<div class="col">
+			<table class="table table-borderless">
 			<tr>
-				<th style="width: 20%;">購入者</th>
+				<th class="align-middle font-weight-bold h5" style="width: 200px;">購入者</th>
 				<td>
 					<%= link_to admins_member_path(@order.member) do %>
 						<%= @order.member.last_name + @order.member.first_name %>
@@ -11,14 +14,14 @@
 				</td>
 			</tr>
 			<tr>
-				<th>配送先</th>
+				<th class="align-middle font-weight-bold h5">配送先</th>
 				<td>
-					〒<%= @order.postcode + @order.address %><br>
+					〒<%= @order.postcode %>　<%= @order.address %><br>
 					<%= @order.addressee %>
 				</td>
 			</tr>
 			<tr>
-				<th>支払方法</th>
+				<th class="align-middle font-weight-bold h5">支払方法</th>
 				<% if @order.payment_method == 0 %>
 					<td>クレジットカード</td>
 				<% elsif @order.payment_method == 1 %>
@@ -26,7 +29,7 @@
 				<% end %>
 			</tr>
 			<tr>
-				<th>注文ステータス</th>
+				<th class="align-middle font-weight-bold h5">注文ステータス</th>
 				<td>
 					<%= form_with model: @order, url: admins_order_path, method: :patch, local: true do |f| %>
 						<%= f.select :order_status, [['入金待ち', 1],['入金確認', 2],['製作中', 3],['発送準備中', 4],['発送済み', 5]],
@@ -36,6 +39,7 @@
 				</td>
 			</tr>
 		</table>
+		</div>		
 	</div>
 	<div class="row">
 		<div class="col-8">
