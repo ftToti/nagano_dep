@@ -27,14 +27,17 @@
 								<%= attachment_image_tag cart.product, :image, fallback: 'no_image.jpg', size: '50x40' %>
 								<%= cart.product.name %>
 							</td>
-							<td class="align-middle"><%= (cart.product.unit_price * @tax).round %></td>
+							<td class="align-middle"><%= ((cart.product.unit_price * @tax).round).to_s(:delimited) %></td>
 							<td class="align-middle">
 								<%= form_with model: cart, url: members_cart_item_path(cart), method: :patch, local: true do |item| %>
 									<%= item.number_field :number, style: "width: 50px;" %>
 									<%= item.submit "変更", class: "btn btn-primary" %>
 								<% end %>
 							</td>
-							<td class="align-middle"><%= product_total =((cart.product.unit_price * @tax).round) * cart.number %></td>
+							<td class="align-middle">
+								<% product_total =(((cart.product.unit_price * @tax).round) * cart.number) %>
+								<%= product_total.to_s(:delimited) %>
+							</td>
 							<td class="align-middle text-center"><%= link_to '削除する', members_cart_item_path(cart), method: :delete, class: "btn btn-danger" %></td>
 							<% total += product_total %>
 						</tr>
@@ -54,7 +57,7 @@
 				<thead class="thead-light">
 					<tr>
 						<th width="100">合計金額</th>
-						<td width="100"><%= total %></td>
+						<td width="100"><%= total.to_s(:delimited) %></td>
 					</tr>
 				</thead>
 			</table>

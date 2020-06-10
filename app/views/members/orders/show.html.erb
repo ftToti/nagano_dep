@@ -59,7 +59,7 @@
                 <tr>
                     <th>商品合計</th>
                     <td>
-                        <%= @order.subtotal.to_i - @order.postage.to_i %>
+                        <%= (@order.subtotal.to_i - @order.postage.to_i).to_s(:delimited) %>
                     </td>
                 </tr>
                 <tr>
@@ -71,7 +71,7 @@
                 <tr>
                     <th>ご請求額</th>
                     <td>
-                        <%= @order.subtotal %>
+                        <%= @order.subtotal.to_s(:delimited) %>
                     </td>
                 </tr>
                 </thead>
@@ -97,13 +97,13 @@
                         <%= op.product.name %>
                     </td>
                     <td>
-                        <%= op.purchase_price %>
+                        <%= op.purchase_price.to_s(:delimited) %>
                     </td>
                     <td>
                         <%= op.number %>
                     </td>
                     <td>
-                        <%= op.purchase_price * op.number %>
+                        <%= (op.purchase_price * op.number).to_s(:delimited) %>
                     </td>
                 </tr>
                 <% end %>

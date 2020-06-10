@@ -43,7 +43,7 @@
             	    <%= link_to members_product_path(product) do %>
             	    <%= attachment_image_tag product, :image, fallback: "no_image.jpg", size: "200x160" %><br>
             	    <%= product.name %><br>
-            	    ¥<%= (product.unit_price * @tax).round %>
+            	    ¥<%= ((product.unit_price * @tax).round).to_s(:delimited) %>
             	    <% end %>
             	</div>
             	<% end %>

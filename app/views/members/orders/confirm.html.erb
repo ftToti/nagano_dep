@@ -19,9 +19,12 @@
                 <%= attachment_image_tag cart.product, :image, fallback: 'no_image.jpg', size: '50x40' %>
                 <%= cart.product.name %>
               </td>
-              <td><%= (cart.product.unit_price * @tax).round %></td>
+              <td><%= ((cart.product.unit_price * @tax).round).to_s(:delimited) %></td>
               <td><%= cart.number %></td>
-              <td><%= subsubtotal = ((cart.product.unit_price * @tax).round * cart.number) %></td>
+              <td>
+                <% subsubtotal = ((cart.product.unit_price * @tax).round * cart.number) %>
+                <%= subsubtotal.to_s(:delimited) %>
+              </td>
               <% @subtotal += subsubtotal  %>
             </tr>
           <% end %>
@@ -37,11 +40,11 @@
         </tr>
         <tr>
           <th class="table-active">商品合計</th>
-          <td><%= @subtotal %></td>
+          <td><%= @subtotal.to_s(:delimited) %></td>
         </tr>
         <tr>
           <th class="table-active">請求金額</th>
-          <td><%= 800 + @subtotal %></td>
+          <td><%= (800 + @subtotal).to_s(:delimited) %></td>
         </tr>
       </table>
     </div>
