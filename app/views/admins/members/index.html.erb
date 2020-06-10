@@ -5,7 +5,7 @@
     <div class="row">
       <div class="col-10 m-auto">
         <table class="table">
-        <thead>
+        <thead class="thead-light">
             <tr>
                 <th>会員ID</th>
                 <th>氏名</th>
@@ -39,6 +39,11 @@
             <% end %>
         </tbody>
         </table>
+        <div class="row">
+            <div class="col-4 offset-5">
+                <%= paginate @members %>
+            </div>
+        </div>
       </div>
     </div>
 </div>
