@@ -1,8 +1,9 @@
 <div class="container">
-	<h2>商品一覧</h2>
-	<div class="text-right">
-		<%= link_to '＋', new_admins_product_path,
-		 class: "btn btn-primary rounded-circle p-0 text-center", style: "width:2rem; height:2rem;" %>
+	<div class="row">
+		<div class="col-2 table-active text-center h2">商品一覧</div>
+	</div>
+	<div class="col text-right mr-2 mb-2">
+		<%= link_to '＋', new_admins_product_path, class: "btn btn-primary rounded-circle" %>
 	</div>
 	<table class="table">
 		<thead class="thead-light">
@@ -32,5 +33,9 @@
 			<% end %>
 		</tbody>
 	</table>
-	<%= paginate @products %>
+	<div class="row">
+		<div class="col-3 offset-5">
+			<%= paginate @products %>
+		</div>
+	</div>
 </div>
