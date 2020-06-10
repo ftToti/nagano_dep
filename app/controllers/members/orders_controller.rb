@@ -28,15 +28,9 @@ class Members::OrdersController < ApplicationController
       @order.address = @shipping_address.address
       @order.addressee = @shipping_address.addressee
     when "3"
-      @sa = ShippingAddress.new
-      @sa.member_id = current_member.id
-      @sa.postcode = params[:order][:postcode]
-      @sa.address = params[:order][:address]
-      @sa.addressee = params[:order][:addressee]
-      @sa.save
-      @order.postcode = @sa.postcode
-      @order.address = @sa.address
-      @order.addressee = @sa.addressee
+      @order.postcode = params[:order][:postcode]
+      @order.address = params[:order][:address]
+      @order.addressee = params[:order][:addressee]
     end
   end
 
@@ -53,14 +47,14 @@ class Members::OrdersController < ApplicationController
       @op.save
     end
 
-#    if params[:shipping] == "3"
-#      @sa = ShippingAddress.new(shipping_address_params)
-#      @sa.member_id = current_member.id
-#      @sa.postcode = params[:order][:postcode]
-#      @sa.address = params[:order][:address]
-#      @sa.addressee = params[:order][:addressee]
-#      @sa.save
-#    end
+    if params[:order][:new_address] == "3"
+      ShippingAddress.create!(
+        member_id: current_member.id,
+        postcode: @order.postcode,
+        address: @order.address,
+        addressee: @order.addressee
+      )
+    end
 
       current_member.cart_items.destroy_all
       redirect_to members_thanks_path
