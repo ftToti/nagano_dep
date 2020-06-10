@@ -26,7 +26,7 @@
             <div style="word-break: normal;">
                 <%= @product.description %>
             </div><br>
-            ¥<%= (@product.unit_price * @tax).round %>税込
+            ¥<%= ((@product.unit_price * @tax).round).to_s(:delimited) %>税込
         </div>
         <div class="col-4 offset-9">
             <%= form_with model: @cart_item, url: members_cart_items_path, local: true do |form| %>
