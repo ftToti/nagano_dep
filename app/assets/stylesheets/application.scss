@@ -16,3 +16,17 @@
  // Custom bootstrap variables must be set or imported *before* bootstrap.
 @import "bootstrap";
 
+@font-face{
+   font-family: "anti";
+   src: url('GL-AntiquePlus.ttf');
+   font-weight: normal;
+   font-style: normal;
+ }
+
+ body{
+  font-family: serif;
+}
+h1{
+  color:gray;
+  font-family: "anti";
+}
