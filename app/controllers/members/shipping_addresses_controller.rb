@@ -12,7 +12,8 @@ class Members::ShippingAddressesController < ApplicationController
 		if @shipping_address.save
 			redirect_to members_shipping_addresses_path
 		else
-			@shipping_addresses = ShippingAddress.all
+			@member = current_member
+			@shipping_addresses = @member.shipping_addresses
 			render "index"
 		end
 	end
