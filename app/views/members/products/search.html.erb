@@ -1,0 +1,15 @@
+<% if @member_or_product == "1" %>
+
+<% @members.each do |member| %>
+<%= member.first_name %>
+<% end %>
+
+<% elsif @member_or_product == "2" %>
+
+<% @products.each do |product| %>
+<%= product.name %>
+<% end %>
+
+<% else %>
+
+<% end %>

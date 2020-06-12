@@ -48,6 +48,22 @@
                   </div>
                 </nav>
 
+                <% if member_signed_in? %>
+                <div class="row">
+                  <div class="col-xs-6 col-xs-offset-4">
+                    <div>
+                      <%= form_tag(members_search_path, :method => 'get') do %>
+                      <%= text_field_tag :search %>
+                      <%= select_tag(:option, options_for_select([["member", "1"],["product","2"]])) %>
+                      <%= select_tag(:choice, options_for_select([["部分一致検索", "1" ],["後方一致検索", "2" ],["前方一致検索", "3" ],["完全一致検索", "4" ]])) %>
+                      <%= submit_tag '検索', :name => nil %>
+                      <% end %>
+                    </div>
+                  </div>
+                </div>
+                <% else %>
+                <% end %>
+
                 
 
             </header>

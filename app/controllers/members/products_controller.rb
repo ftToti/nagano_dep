@@ -17,4 +17,15 @@ class Members::ProductsController < ApplicationController
 		@pn = @genre.products.joins(:product_genre).where(product_genres: {is_enabled: true}).count
 		@tax = 1.1
 	end
+
+	def search
+		@product = Product.new
+    	@member_or_product = params[:option]
+    	@how_search = params[:choice]
+	    if @member_or_product == "1"
+	      @members = Member.search(params[:search], @member_or_product, @how_search)
+	    else
+	      @products = Product.search(params[:search], @member_or_product, @how_search)
+	    end
+    end
 end

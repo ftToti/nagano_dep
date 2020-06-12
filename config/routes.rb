@@ -24,6 +24,7 @@ Rails.application.routes.draw do
   root to: 'members/top#top'
   namespace :members do
     get '/top/about', to: 'top#about', as: 'about'
+    get "search" => "products#search"
     delete '/cart_items', to: 'cart_items#destroy_all', as: 'cart_destroy_all'
     get '/disable_confirm', to: 'members#disable_confirm', as: 'disable_confirm'
     patch '/disable/:id', to: 'members#disable', as: 'disable'
