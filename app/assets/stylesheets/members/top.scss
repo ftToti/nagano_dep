@@ -2,14 +2,40 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+
 .top-visual {
   height: 350px;
   background-image: url(外観.jpg);
   background-size: cover;
   background-position: center;
+  animation: anime1 3s ease;
+}
+
+@keyframes anime1 {
+    0% {
+        opacity:  0;                /* 透明度指定 */
+        top: 50px;                  /* 位置指定 */
+    }
+    100% {
+        opacity:  1;                /* 透明度指定 */
+        top: 0;                     /* 位置指定 */
+    }
+}
+
+.top-visual::before {
+  content: '';
+  position: absolute;
+  top: -5px;
+  bottom: -5px;
+  left: -5px;
+  right: -5px;
+  background: inherit;
+  filter: blur(2px);
+  z-index: -1;
 }
 
 .top-visual-content {
+  text-shadow: 0 0 10px #333;
   width: 75%;
   height: 40%;
   background: rgba(255,255,255,0.5);

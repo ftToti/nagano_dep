@@ -5,9 +5,10 @@
       <%= csrf_meta_tags %>
       <%= csp_meta_tag %>
 
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/pace/1.0.2/pace.min.js"></script>
       <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
       <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
-    <script src="https://kit.fontawesome.com/efa75c5e0c.js" crossorigin="anonymous"></script>
+      <script src="https://kit.fontawesome.com/efa75c5e0c.js" crossorigin="anonymous"></script>
   </head>
 
           <body>
@@ -47,8 +48,6 @@
                   <% end %>
                   </div>
                 </nav>
-
-                
 
             </header>
            <%= yield %>
