@@ -43,8 +43,8 @@
           <td><%= @subtotal.to_s(:delimited) %></td>
         </tr>
         <tr>
-          <th class="table-active">請求金額</th>
-          <td><%= (800 + @subtotal).to_s(:delimited) %></td>
+          <th class="table-active"><span class="text-danger">請求金額</span></th>
+          <td><span class="text-danger"><%= (800 + @subtotal).to_s(:delimited) %></span></td>
         </tr>
       </table>
     </div>

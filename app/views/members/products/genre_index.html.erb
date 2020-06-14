@@ -9,7 +9,7 @@
                 <tr>
                     <th>
                         <%= link_to members_products_genre_path(genre) do %>
-                        <%= genre.category %>
+                        <span class="text-muted"><u><%= genre.category %></u></span>
                         <% end %>
                     </th>
                 </tr>
@@ -22,9 +22,9 @@
             <div class="float-left" , style="padding: 10px;">
                 <%= link_to members_product_path(product) do %>
                 <%= attachment_image_tag product, :image, fallback: "no_image.jpg", size: "200x160" %><br>
-                <%= product.name %><br>
-                ¥
-                <%= ((product.unit_price * @tax).round).to_s(:delimited) %>
+                <span class="text-dark"><%= product.name %></span><br>
+                <span class="text-dark">¥
+                <%= ((product.unit_price * @tax).round).to_s(:delimited) %></span>
                 <% end %>
             </div>
             <% end %>
