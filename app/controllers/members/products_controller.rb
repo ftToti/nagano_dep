@@ -19,13 +19,9 @@ class Members::ProductsController < ApplicationController
 	end
 
 	def search
+		@tax = 1.1
 		@product = Product.new
-    	@member_or_product = params[:option]
-    	@how_search = params[:choice]
-	    if @member_or_product == "1"
-	      @members = Member.search(params[:search], @member_or_product, @how_search)
-	    else
-	      @products = Product.search(params[:search], @member_or_product, @how_search)
-	    end
-    end
+		@products = Product.search(params[:search], "2").page(params[:page]).reverse_order
+		@pn = Product.search(params[:search], "2").count
+  end
 end

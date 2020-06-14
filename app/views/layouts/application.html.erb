@@ -27,13 +27,26 @@
                       <li class="mr-4"><%= link_to 'マイページ', members_member_path(current_member.id), class: "page-link text-dark d-inline-block btn" %></li>
                       <li class="mr-4"><%= link_to '商品一覧', members_products_path, class: "page-link text-dark d-inline-block btn" %></li>
                       <li class="mr-4"><%= link_to 'カート', members_cart_item_path(current_member), class: "page-link text-dark d-inline-block btn" %></li>
-                      <li class="mr-4"><%= link_to 'ログアウト', destroy_member_session_path, method: :delete, class: "page-link text-dark d-inline-block btn" %></li>
+                      <li class="mr-4 animate__pulse"><%= link_to 'ログアウト', destroy_member_session_path, method: :delete, class: "page-link text-dark d-inline-block btn" %></li>
+                      <li>
+                        <%= form_tag(members_search_path, :method => 'get') do %>
+                          <%= text_field_tag :search %>
+                          <%= submit_tag '検索', :name => nil %>
+                        <% end %>
+                      </li>
                     <% elsif admin_signed_in? %>
                       <li class="mr-4"><%= link_to '商品一覧', admins_products_path, class: "page-link text-dark d-inline-block btn" %></li>
                       <li class="mr-4"><%= link_to '会員一覧', admins_members_path, class: "page-link text-dark d-inline-block btn" %></li>
                       <li class="mr-4"><%= link_to '注文履歴一覧', admins_orders_path, class: "page-link text-dark d-inline-block btn" %></li>
                       <li class="mr-4"><%= link_to 'ジャンル一覧', admins_product_genres_path, class: "page-link text-dark d-inline-block btn" %></li>
                       <li class="mr-4"><%= link_to 'ログアウト', destroy_admin_session_path, method: :delete, class: "page-link text-dark d-inline-block btn" %></li>
+                      <li>
+                        <%= form_tag(admins_search_path, :method => 'get') do %>
+                          <%= text_field_tag :search %>
+                          <%= select_tag(:option, options_for_select([["member", "1"],["product","2"]])) %>
+                          <%= submit_tag '検索', :name => nil %>
+                        <% end %>
+                      </li>
                     <% else %>
                       <li class="mr-4"><%= link_to '商品一覧', members_products_path, class: "page-link text-dark d-inline-block btn" %></li>
                       <li class="mr-4"><%= link_to '長野CAKEとは', members_about_path, class: "page-link text-dark d-inline-block btn" %></li>
@@ -41,32 +54,24 @@
                       <li class="mr-4"><%= link_to 'ログイン', new_member_session_path, class: "page-link text-dark d-inline-block btn" %></li>
                     <% end %>
                   </ul>
-                  <div class="nav navbar-nav navbar-right " style="float:right;">
-                  <%= form_tag(members_products_path,:method => 'get') do %>
-                    <%= text_field_tag :search %>
-                    <%= submit_tag 'Search', :name => nil %>
-                  <% end %>
-                  </div>
-                </nav>
+              </nav>
 
                 <% if member_signed_in? %>
-                <div class="row">
-                  <div class="col-xs-6 col-xs-offset-4">
+                <header>
+                  <nav>
+                    <ul class="nav navbar-nav navbar-right">
+                    </ul>
+                  </nav>
+                </header>
+
+                <% elsif admin_signed_in? %>
                     <div>
-                      <%= form_tag(members_search_path, :method => 'get') do %>
-                      <%= text_field_tag :search %>
-                      <%= select_tag(:option, options_for_select([["member", "1"],["product","2"]])) %>
-                      <%= select_tag(:choice, options_for_select([["部分一致検索", "1" ],["後方一致検索", "2" ],["前方一致検索", "3" ],["完全一致検索", "4" ]])) %>
-                      <%= submit_tag '検索', :name => nil %>
-                      <% end %>
                     </div>
                   </div>
-                </div>
-                <% else %>
                 <% end %>
 
             </header>
-           <%= yield %>
+            <%= yield %>
           </body>
 </html>
 

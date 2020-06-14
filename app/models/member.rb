@@ -14,20 +14,10 @@ class Member < ApplicationRecord
     super && (self.is_enabled == true)
   	end
 
-    def Member.search(search, member_or_product, how_search)
+    def Member.search(search, member_or_product)
       if member_or_product == "1"
-      if how_search == "1"
-        Member.where(["first_name LIKE ?", "%#{search}%"])
-      elsif how_search == "2"
-        Member.where(["first_name LIKE ?", "%#{search}"])
-      elsif how_search == "3"
-        Member.where(["first_name LIKE ?", "#{search}%"])
-      elsif how_search == "4"
-        Member.where(["first_name LIKE ?", "#{search}"])   
-      else
-        Member.all
+        Member.where(["first_name  LIKE ? OR last_name LIKE ?", "%#{search}%", "%#{search}%"])
       end
-    end
     end
 
 end
