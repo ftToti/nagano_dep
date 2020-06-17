@@ -1,19 +1,44 @@
-<h1>Adimns_Products_Show</h1>
-<%= link_to '商品新規登録', new_admins_product_path %>
-<%= link_to '商品一覧', admins_products_path %>
-<h2>商品詳細</h2>
-<div>
-	<%= attachment_image_tag @product, :image, fallback: "no_image.jpg", size: "200x160" %>
-</div>
-<div>
-	<span>商品 <%= @product.name %></span><br>
-	<span>商品説明 <%= @product.description %></span><br>
-	<span>ジャンル <%= @product.product_genre.category %></span><br>
-	<span>税込価格(税抜価格) <%= (@product.unit_price * @tax).round %>(<%= @product.unit_price %>)</span><br>
-	<% if @product.is_sales == true %>
-		<span>販売ステータス 販売中</span>
-	<% elsif @product.is_sales == false %>
-		<span>販売ステータス 販売停止中</span>
-	<% end %>
-	<%= link_to '編集する', edit_admins_product_path(@product) %>
+<div class="container">
+	<div class="row">
+		<div class="col-2 offset-1 table-active h3 text-center">商品詳細</div>
+	</div>
+	<div style="padding-top: 80px;">
+		<div class="row">
+			<div class="col-4">
+				<%= attachment_image_tag @product, :image, fallback: 'no_image.jpg', size: "250x200" %>
+			</div>
+			<div class="col-6">
+				<div>
+					<label style="width: 15%;">商品名</label>
+					<span style="width: 45%;"><%= @product.name %></span>
+				</div><br>
+				<div>
+					<label style="width: 15%;">商品説明</label>
+					<span style="width: 45%; word-wrap: break-word;"><%= @product.description %></span>
+				</div><br>
+				<div>
+					<label style="width: 15%;">ジャンル</label>
+					<span style="width: 45%;"><%= @product.product_genre.category %></span>
+				</div><br>
+				<div>
+					<label style="width: 30%;">税込価格(税抜価格)</label>
+					<span style="width: 45%;">
+						<%= ((@product.unit_price * @tax).round).to_s(:delimited) %>(<%= @product.unit_price.to_s(:delimited) %>)
+					</span>
+				<div><br>
+					<label style="width: 30%;">販売ステータス</label>
+					<span style="width: 45%;">
+						<% if @product.is_sales == true %>
+							販売中
+						<% else %>
+							販売停止中
+						<% end %>
+					</span>
+				</div><br>
+				<div class="text-right">
+					<%= link_to "編集する", edit_admins_product_path, class: "btn btn-primary btn-lg" %>
+				</div>
+			</div>
+		</div>
+	</div>
 </div>

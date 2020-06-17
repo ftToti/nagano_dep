@@ -1,37 +1,49 @@
 <div class="container">
-	<div class="row">
-
-      <div class=col-xs-9>
-        <h2>会員一覧</h2>
+    <div class="row">
+        <div class="col-2 table-active h2 text-center mb-5">会員一覧</div>
+    </div>
+    <div class="row">
+      <div class="col-10 m-auto">
         <table class="table">
-          <thead>
-
+        <thead class="thead-light">
             <tr>
-              <th>会員ID</th>
-              <th>氏名</th>
-              <th>メールアドレス</th>
-              <th>ステータス</th>
+                <th>会員ID</th>
+                <th>氏名</th>
+                <th>メールアドレス</th>
+                <th>ステータス</th>
             </tr>
-          </thead>
-
-          <tbody>
+        </thead>
+        <tbody>
             <% @members.each do |member| %>
             <tr>
-              <td><%= member.id %></td>
-              <td><%= link_to member.last_name, admins_member_path(member), class: "member_#{member.id}" %><%= link_to member.first_name, admins_member_path(member), class: "member_#{member.id}" %></td>
-              <td><%= member.email %></td>
-              <% if member.is_enabled == true %>
+                <td>
+                    <%= member.id %>
+                </td>
+                <td>
+                    <%= link_to admins_member_path(member) do %>
+                    <%= member.last_name %>
+                    <%= member.first_name %>
+                </td>
+                <% end %>
+                <td>
+                    <%= member.email %>
+                </td>
+                <% if member.is_enabled == true %>
                 <td>有効</td>
-              <% elsif member.is_enabled == false %>
+                <% elsif member.is_enabled == false %>
                 <td>退会済み</td>
-              <% else %>
+                <% else %>
                 <td></td>
-              <% end %>
+                <% end %>
             </tr>
             <% end %>
-          </tbody>
-
+        </tbody>
         </table>
+        <div class="row">
+            <div class="col-4 offset-5">
+                <%= paginate @members %>
+            </div>
+        </div>
+      </div>
     </div>
-  </div>
 </div>

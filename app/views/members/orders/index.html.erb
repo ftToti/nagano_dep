@@ -1,0 +1,51 @@
+<div class="container">
+	<div class="row">
+		<div class="col-3 offset-1 m-4">
+            <h2 class="text-center table-active">注文履歴一覧</h2>
+        </div>
+        <table class="table table-bordered">
+			<thead class="thead-light">
+				<tr>
+					<th width="150">注文日</th>
+					<th>配送先</th>
+					<th  width="150">注文商品</th>
+					<th width="110">支払い金額</th>
+					<th  width="150">ステータス</th>
+					<th width="150">注文詳細</th>
+				</tr>
+			</thead>
+			<tbody>
+				<% @orders.each do |order| %>
+					<tr>
+						<td class="align-middle"><%= order.created_at.strftime('%Y/%m/%d') %></td>
+						<td class="align-middle">
+							<%= order.postcode %>
+							<%= order.address %>
+							<%= order.addressee %>
+						</td>
+						<td class="align-middle">
+							<% order.order_products.each do |op| %>
+								<%= op.product.name %><br>
+							<% end %>
+						</td>
+						<td class="align-middle"><%= order.subtotal.to_s(:delimited) %>円</td>
+						<td class="align-middle">
+							<% if order.order_status == 1 %>
+								入金待ち
+							<% elsif order.order_status == 2 %>
+								入金確認
+							<% elsif order.order_status == 3 %>
+								製作中
+							<% elsif order.order_status == 4 %>
+								発送準備中
+							<% elsif order.order_status == 5 %>
+								発送済み
+							<% end %>
+						</td>
+						<td  class="text-center align-middle"><%= link_to '表示する', members_order_path(order), class: 'btn btn-primary' %></td>
+					</tr>
+				<% end %>
+			</tbody>
+		</table>
+	</div>
+</div>

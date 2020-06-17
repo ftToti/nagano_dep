@@ -1,27 +1,39 @@
-<h1>Members_Products_Show</h1>
-<%= link_to '商品一覧', members_products_path %>
 <div class="container">
-	<div class="row">
-		<div class="col-xs-3">
-			<label>
-				ジャンル検索
-			</label>
-		</div>
-		<div class="col-xs-9">
-			<div>
-				<%= attachment_image_tag @product, :image, fallback: 'no_image.jpg', size: '200x160' %>
-				<%= @product.name %>
-				<%= @product.description %>
-				¥<%= (@product.unit_price * @tax).round %>税込
-			</div>
-			<div>
-				<%= form_with model: @cart_item, url: members_cart_items_path do |form| %>
-					<%= form.select :number, [["1", 1 ],["2", 2 ],["3", 3 ]] %>
-					<%= form.hidden_field :member_id, value: current_member.id %>
-					<%= form.hidden_field :product_id, value: @product.id %>
-					<%= form.submit %>
-				<% end %>
-			</div>
-		</div>
-	</div>
+    <div class="row">
+        <div class="col-2">
+            <table class="table table-borderless border">
+                <tr class="border-bottom">
+                    <th>ジャンル検索</th>
+                </tr>
+                <% ProductGenre.where(is_enabled: true).each do |genre| %>
+                <tr>
+                    <th>
+                        <%= link_to members_products_genre_path(genre) do %>
+                        <span class="text-muted"><%= genre.category %></span>
+                        <% end %>
+                    </th>
+                </tr>
+                <% end %>
+            </table>
+        </div>
+        <div class="col offset-1">
+            <%= attachment_image_tag @product, :image, fallback: 'no_image.jpg', size: '400x320' %>
+        </div>
+        <div class="col-4">
+            <div style="font-size: 24px;">
+                <%= @product.name %>
+            </div><br>
+            <div style="word-break: normal;">
+                <%= @product.description %>
+            </div><br>
+            ¥<%= ((@product.unit_price * @tax).round).to_s(:delimited) %>税込
+        </div>
+        <div class="col-4 offset-9">
+            <%= form_with model: @cart_item, url: members_cart_items_path, local: true do |form| %>
+            <%= form.number_field :number, style: "width: 150px;" %>
+            <%= form.hidden_field :product_id, value: @product.id %>
+            <%= form.submit "カートに入れる", class: "btn btn-primary" %>
+            <% end %>
+        </div>
+    </div>
 </div>

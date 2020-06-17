@@ -1,0 +1,114 @@
+<div class="container">
+    <div class="row">
+        <div class="col-3 offset-2 m-4">
+            <h2 class="text-center table-active">注文履歴詳細</h2>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-6">
+            <b>注文情報</b>
+            <table class="table table-bordered">
+                <thead class="thead-light">
+                <tr>
+                    <th>注文日</th>
+                    <td>
+                        <%= @order.created_at.strftime('%Y/%m/%d') %>
+                    </td>
+                </tr>
+                <tr>
+                    <th>配送先</th>
+                    <td>
+                        <%= @order.postcode %>
+                        <%= @order.address %>
+                        <%= @order.addressee %>
+                    </td>
+                </tr>
+                <tr>
+                    <th>支払方法</th>
+                    <td>
+                        <% if @order.payment_method == 0 %>
+                        クレジットカード
+                        <% elsif @order.payment_method == 1 %>
+                        銀行振込
+                        <% end %>
+                    </td>
+                </tr>
+                <tr>
+                    <th>ステータス</th>
+                    <td>
+                        <% if @order.order_status == 1 %>
+                            入金待ち
+                        <% elsif @order.order_status == 2 %>
+                            入金確認
+                        <% elsif @order.order_status == 3 %>
+                            製作中
+                        <% elsif @order.order_status == 4 %>
+                            発送準備中
+                        <% elsif @order.order_status == 5 %>
+                            発送済み
+                        <% end %>
+                    </td>
+                </tr>
+                </thead>
+            </table>
+        </div>
+        <div class="col-3">
+            <b>請求情報</b>
+            <table class="table table-bordered">
+                <thead class="thead-light">
+                <tr>
+                    <th>商品合計</th>
+                    <td>
+                        <%= (@order.subtotal.to_i - @order.postage.to_i).to_s(:delimited) %>
+                    </td>
+                </tr>
+                <tr>
+                    <th>配送料</th>
+                    <td>
+                        <%= @order.postage %>
+                    </td>
+                </tr>
+                <tr>
+                    <th>ご請求額</th>
+                    <td>
+                        <%= @order.subtotal.to_s(:delimited) %>
+                    </td>
+                </tr>
+                </thead>
+            </table>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-8">
+            <b>注文内容</b>
+        <table class="table table-bordered">
+            <thead class="thead-light">
+                <tr>
+                    <th width="600">商品</th>
+                    <th width="150">単価(税込)</th>
+                    <th width="100">個数</th>
+                    <th width="100">小計</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% @order.order_products.each do |op| %>
+                <tr>
+                    <td>
+                        <%= op.product.name %>
+                    </td>
+                    <td>
+                        <%= op.purchase_price.to_s(:delimited) %>
+                    </td>
+                    <td>
+                        <%= op.number %>
+                    </td>
+                    <td>
+                        <%= (op.purchase_price * op.number).to_s(:delimited) %>
+                    </td>
+                </tr>
+                <% end %>
+            </tbody>
+        </table>
+        </div>
+    </div>
+</div>

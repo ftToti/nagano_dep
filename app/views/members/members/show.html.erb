@@ -1,0 +1,75 @@
+<div class="container">
+    <div class="row m-4">
+        <div class="col-2 offset-1 align-items-center table-active text-center h3">マイページ</div>
+    </div>
+    <div class="row">
+        <div class="col-5">
+            <table class="table table-borderless">
+                <tr>
+                    <td class="align-middle h5 font-weight-bolder">登録情報</td>
+                    <td><%= link_to "編集する", edit_members_member_path, class: "btn btn-primary btn-block" %></td>
+                    <td><%= link_to "パスワードを変更する", edit_member_registration_path, class: "btn btn-primary btn-block" %></td>
+                </tr>
+            </table>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-8">
+            <table class="table table-bordered">
+                <tbody>
+                    <tr>
+                        <td class="table-active" width="300">氏名</td>
+                        <td width="700">
+                            <%= @member.last_name %>　
+                            <%= @member.first_name %>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="table-active">カナ</td>
+                        <td>
+                            <%= @member.last_name_kana %>　
+                            <%= @member.first_name_kana %>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="table-active">郵便番号</td>
+                        <td>
+                            <%= @member.postcode %>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="table-active">住所</td>
+                        <td>
+                            <%= @member.address %>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="table-active">電話番号</td>
+                        <td>
+                            <%= @member.phone_number %>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="table-active">メールアドレス</td>
+                        <td>
+                            <%= @member.email %>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-3">
+            <table class="table table-borderless">
+                <tr>
+                    <td class="align-middle h5 font-weight-bolder">配達先</td>
+                    <td><%= link_to "一覧を見る", members_shipping_addresses_path, class: "btn btn-primary btn-block" %></td>
+                </tr>
+                <tr>
+                    <td class="align-middle h5 font-weight-bolder">注文履歴<td><%= link_to "一覧を見る", members_orders_path, class: "btn btn-primary btn-block" %></td>
+                </tr>
+            </table>
+        </div>
+    </div>
+</div>

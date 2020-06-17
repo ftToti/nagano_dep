@@ -12,6 +12,7 @@ Rails.application.routes.draw do
 
   namespace :admins do
     get '/top', to: 'admins/top#top', as: 'top'
+    get "search" => "products#search"
     #root 'admins/top#top'
     resources :members, only: [:index, :show, :edit, :update]
     resources :orders, only: [:index, :show, :update]
@@ -24,11 +25,13 @@ Rails.application.routes.draw do
   root to: 'members/top#top'
   namespace :members do
     get '/top/about', to: 'top#about', as: 'about'
-    delete '/cart_items', to: 'cart_items#destroy_all', as: 'destroy_all'
+    get "search" => "products#search"
+    delete '/cart_items', to: 'cart_items#destroy_all', as: 'cart_destroy_all'
     get '/disable_confirm', to: 'members#disable_confirm', as: 'disable_confirm'
     patch '/disable/:id', to: 'members#disable', as: 'disable'
-    get '/orders/confirm', to: 'orders#confirm', as: 'confirm'
+    post '/orders/confirm', to: 'orders#confirm', as: 'confirm'
     get '/orders/thanks', to: 'orders#thanks', as: 'thanks'
+    get '/products/genre/:id', to: 'products#genre_index', as: 'products_genre'
     resources :members, only: [:show, :edit, :update]
     resources :cart_items, only: [:show, :create, :update, :destroy]
     resources :orders, only: [:index, :show, :new, :create, :update]

@@ -1,6 +1,8 @@
 class Admins::ProductsController < ApplicationController
+	before_action :authenticate_admin!
+
 	def index
-		@products = Product.all
+		@products = Product.page(params[:page]).per(10)
 	end
 
 	def show
@@ -15,7 +17,7 @@ class Admins::ProductsController < ApplicationController
 	def create
 		@product = Product.new(product_params)
 		if @product.save
-			redirect_to admins_products_path
+			redirect_to admins_product_path(@product)
 		else
 			render "new"
 		end
@@ -31,9 +33,19 @@ class Admins::ProductsController < ApplicationController
 		if @product.update(product_params)
 			redirect_to admins_products_path
 		else
-			render "edit"
+			render "index"
 		end
 	end
+
+	def search
+		@product = Product.new
+		@member_or_product = params[:option]
+		if @member_or_product == "1"
+			@members = Member.search(params[:search], @member_or_product).page(params[:page]).per(10)
+		else
+			@products = Product.search(params[:search], @member_or_product).page(params[:page]).per(10)
+		end
+  end
 
 	private
 	def product_params

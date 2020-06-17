@@ -1,11 +1,12 @@
-<h1>Admins_Products_Index</h1>
-<%= link_to '商品新規登録', new_admins_product_path %>
-<%= link_to '商品ジャンル一覧', admins_product_genres_path %>
 <div class="container">
-	<h2>商品一覧</h2>
-
+	<div class="row">
+		<div class="col-2 table-active text-center h2">商品一覧</div>
+	</div>
+	<div class="col text-right mr-2 mb-2">
+		<%= link_to '＋', new_admins_product_path, class: "btn btn-primary rounded-circle" %>
+	</div>
 	<table class="table">
-		<thead>
+		<thead class="thead-light">
 			<tr class="active">
 				<th>商品ID</th>
 				<th>商品名</th>
@@ -19,7 +20,7 @@
 				<tr>
 					<td><%= product.id %></td>
 					<td><%= link_to product.name, admins_product_path(product) %></td>
-					<td><%= product.unit_price %></td>
+					<td><%= product.unit_price.to_s(:delimited) %></td>
 					<td><%= product.product_genre.category %></td>
 					<% if product.is_sales == true %>
 						<td>販売中</td>
@@ -32,4 +33,9 @@
 			<% end %>
 		</tbody>
 	</table>
+	<div class="row">
+		<div class="col-3 offset-5">
+			<%= paginate @products %>
+		</div>
+	</div>
 </div>

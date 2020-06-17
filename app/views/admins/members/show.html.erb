@@ -1,29 +1,64 @@
 <div class="container">
 	<div class="row">
-    <div class=col-xs-9>
+    <div class="col-4 align-items-center table-active text-center h4 mb-5"><%= @member.last_name %><%= @member.first_name %>さんの会員詳細</div>
+  </div>
 
-      <h2><%= @member.last_name %><%= @member.first_name %>さんの会員詳細</h2><br >
-
-        <div>
-          <p>顧客ID</p><%= @member.id %><br>
+  <div class="row">
+    <div class="col-6">
+      <table class="table table-borderless">
+        <tr>
+          <td class="align-middle">顧客ID</td>
+            <td><%= @member.id %></td>
           <% if @member.is_enabled == true %>
-            <td>有効会員</td>
+            <td><mark>有効会員</mark></td>
           <% elsif @member.is_enabled == false %>
-            <td>退会済み</td>
-          <% else %>
-            <td></td>
+            <mark><td>退会済み</td></mark>
           <% end %>
-          <p>氏名</p><%= @member.last_name %>　<%= @member.first_name %>
-          <p>フリガナ</p><%= @member.last_name_kana %>　<%= @member.first_name_kana %>
-          <p>郵便番号</p><%= @member.postcode %>
-          <p>住所</p><%= @member.address %>
-          <p>電話番号</p><%= @member.phone_number %>
-          <p>メールアドレス</p><%= @member.email %>
-        </div>
+        </tr>
+      </table>
+    </div>
+  </div>
 
-        <div>
-          <%= link_to '編集する',edit_admins_member_path(@member.id), class: "col-xs-2 btn btn-default edit_member_#{@member.id}" %>
-          [ぼたん]注文履歴一覧を見る（後で実装）
+  <div class="row">
+    <div class="col-6">
+      <table class="table table-borderless">
+        <tr>
+          <td class="align-middle">氏名</td>
+          <td><%= @member.last_name %>　<%= @member.first_name %></td>
+        </tr>
+
+        <tr>
+          <td class="align-middle">フリガナ</td>
+          <td><%= @member.last_name_kana %>　<%= @member.first_name_kana %></td>
+        </tr>
+
+        <tr>
+          <td class="align-middle">郵便番号</td>
+          <td><%= @member.postcode %></td>
+        </tr>
+
+        <tr>
+          <td class="align-middle">住所</td>
+          <td><%= @member.address %></td>
+        </tr>
+
+        <tr>
+          <td class="align-middle">電話番号</td>
+          <td><%= @member.phone_number %></td>
+        </tr>
+
+        <tr>
+        </tr>
+          <td class="align-middle">メールアドレス</td>
+            <td><%= @member.email %></td>
+        </tr>
+      </table>
+    </div>
+  </div>
+
+        <div class="mt-5">
+          <%= link_to '編集する',edit_admins_member_path(@member), class: "btn btn-primary" %>
+          <%= link_to '注文履歴一覧を見る', admins_orders_path(id: @member, version: 'member'), class: "btn btn-primary" %>
         </div>
     </div>
   </div>

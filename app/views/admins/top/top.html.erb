@@ -1,10 +1,11 @@
-<div class=container>
+<div class="container">
 	<div class="row">
-		<div class="main col-md-offset-3 col-md-6">
-    <h3>管理者画面</h3>
+		<div class="col-2 table-active h3 text-center">管理者画面</div>
+	</div>
 
-    <h2>本日の注文件数</h2>
-      <h2>◯件</h2> #後ほど変更
-      </div>
+	<div class="row", style="padding-top: 100px;">
+   		<h4>本日の注文件数</h4>
+   		<span class="h4", style="padding-left: 50px;"><%= link_to "#{@orders.count}",
+   			 admins_orders_path(version: 'today') %>件</span>
 	</div>
 </div>

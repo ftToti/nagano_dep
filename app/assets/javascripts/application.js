@@ -16,3 +16,29 @@
 //= require bootstrap-sprockets
 //= require popper
 //= require_tree .
+
+// $(function() {
+// 	setTimeout(function(){
+// 		$('.start p').fadeIn(1600);
+// 	},500); //0.5秒後にロゴをフェードイン!
+// 	setTimeout(function(){
+// 		$('.start').fadeOut();
+// 	},3000); //2.5秒後にロゴ含め真っ白背景をフェードアウト！
+// });
+
+$(document).on('turbolinks:load', function() {
+  $(function(){
+    var pace = $('.pace-wrap');
+
+    //ページの読み込みが完了したらアニメーションを非表示
+    $(window).on('load',function(){
+      pace.fadeOut();
+    });
+
+    //ページの読み込みが完了してなくても2秒後にアニメーションを非表示にする
+    setTimeout(function(){
+      pace.fadeOut();
+    },2000);
+  });
+});
+
